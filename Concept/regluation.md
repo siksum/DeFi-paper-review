@@ -1,6 +1,6 @@
 # CeFi vs DeFi 
 
-##  법적 규제 [[Ref]](https://github.com/siksum/DeFi-paper-review#:~:text=Survey-,Assessing%20the%20effectiveness%20of%20cybersecurity%20frameworks%20in%20mitigating%20cyberattacks%20in%20the%20banking%20sector%20and%20its%20applicability%20to%20decentralized%20finance%20(DeFi),-Olutimehin%2C%20Abayomi%20Titilola)
+##  법적 규제 [[Ref]](https://papers.ssrn.com/sol3/Delivery.cfm?abstractid=5133050)
 
 - 기존의 은행은 중앙 집중식 감독, 규정 준수 의무 및 구조화된 사고 대응 시스템의 이점이 있으며, `NIST CSF`, `ISO/IEC 27001`, `PCIDSS`와 같은 프레임워크가 위험을 완화하는데 중요한 역할을 했음 
     - 금융 기관 전밤의 사이버 보안 관행을 표준화하는 데 중요한 역할을 했음
@@ -25,7 +25,7 @@
 
 <br>
 
-## 법적 규제 준수가 사이버 공격 가능성을 얼마나 감소시키는 가? [[Ref]](https://github.com/siksum/DeFi-paper-review#:~:text=Survey-,Assessing%20the%20effectiveness%20of%20cybersecurity%20frameworks%20in%20mitigating%20cyberattacks%20in%20the%20banking%20sector%20and%20its%20applicability%20to%20decentralized%20finance%20(DeFi),-Olutimehin%2C%20Abayomi%20Titilola)
+## 법적 규제 준수가 사이버 공격 가능성을 얼마나 감소시키는 가? [[Ref]](https://papers.ssrn.com/sol3/Delivery.cfm?abstractid=5133050)
 
 ![규제 준수가 사이버 공격 가능성을 얼마나 감소시키는 가](./image/1.png)
 
