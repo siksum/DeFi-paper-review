@@ -54,7 +54,7 @@
 
 |Category|Title|Reference|
 |---|---|---|
-||||
+|`Whitepaper`|[Advancing DeFi Analytics: Efficiency Analysis with Decentralized Exchanges Comparison Service](https://arxiv.org/pdf/2411.01950)|Onishchuk, Evgenii, Maksim Dubovitskii, and Eduard Horch. "Advancing DeFi Analytics: Efficiency Analysis with Decentralized Exchanges Comparison Service." arXiv preprint arXiv:2411.01950 (2024).|
 ||||
 ||||
 
