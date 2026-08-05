@@ -2,6 +2,8 @@
 
 Price Oracle Manipulation / DeFi 공격·방어 관련 논문 트래킹용 목록입니다.
 
+> Related Work 비교표(특성 축 · Venue · Gap Matrix)는 [related-work-comparison.md](./related-work-comparison.md) 참조.
+
 - 총 논문 수: **75**
 - 읽음: **0** / 미읽음: **75**
 - 읽음 여부: `☐` 미읽음 · `☑` 읽음 (직접 체크해서 업데이트)
