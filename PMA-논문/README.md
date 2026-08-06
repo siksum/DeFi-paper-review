@@ -40,7 +40,7 @@ Price Oracle Manipulation / DeFi 공격·방어 관련 논문 트래킹용 목�
 | 26 | [BACKRUNNER: Mitigating Smart Contract Attacks in the Real World](./BackRunner/BackRunner.md) | 2023 | ☐ |
 | 27 | [Beyond the Public Mempool: Catching DeFi Attacks Before They Happen with Real-Time Smart Contract Analysis](./Beyond_the_Public_Mempool_final/Beyond_the_Public_Mempool_final.md) | 2023 | ☐ |
 | 28 | [Blockchain Large Language Models](./BlockGPT/BlockGPT.md) | 2023 | ☐ |
-| 29 | [DeFiRanger: Detecting DeFi Price Manipulation Attacks](./DeFiRanger/DeFiRanger.md) | 2023 | ☐ |
+| 29 | [DeFiRanger: Detecting DeFi Price Manipulation Attacks](./DeFiRanger/내용%20정리.md) | 2023 | ☑ |
 | 30 | [DeFiTainter: Detecting Price Manipulation Vulnerabilities in DeFi Protocols](./DeFiTainter/DeFiTainter.md) | 2023 | ☐ |
 | 31 | [DeFiWarder: Protecting DeFi Apps from Token Leaking Vulnerabilities](./DeFiWarder/DeFiWarder.md) | 2023 | ☐ |
 | 32 | [Flash Loan Attack Is More Than Just Price Oracle Manipulation: A Comprehensive Empirical Study](./Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation/Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation.md) | 2023 | ☐ |

@@ -1,6 +1,6 @@
 # Related Work 비교 정리 (PMA)
 
-> README 전체 75편 템플릿. Venue는 비움(필요 시 나중에). 채우면서 `?` → 값 / ✔.
+> README 전체 75편 템플릿. Venue는 채우면서 `?` → 학회/저널명 ✔. 나머지 셀도 동일.
 
 ## 범례
 
@@ -56,84 +56,85 @@ PMA 탐지는 아래 4단계 질문으로 분해된다. 축은 이 질문에 1:1
 
 ## 2. 비교 표 (README 전체)
 
+> `Venue`: 학회/저널 (예: USENIX Sec, ISSTA, IEEE S&P, NDSS, ICSE, TDSC …)
 > `Cat`: `DET-TX` · `DET-SC` · `DEF` · `INV` · `SYN` · `ORA` · `INF` · `SOK`
 > `When`: 배포 전 / 실행 전(mempool) / 실행 중 / 사후 · `Resp`: 탐지 / 경보 / 차단 / 구제 / 합성
 
-| # | Work | Year | Cat | When | Resp | Mech | G1 | G2 | G3 | G4 | G5 | G6 | G7 | Gap |
-|:--:|:---|:---:|:---:|:---|:---|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
-| 0 | **Ours** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | — |
-| 1 | [Sereum](./Sereum/Sereum.md) | 2019 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 2 | [Improved Price Oracles](./Improved%20Price%20Oralces/Improved%20Price%20Oralces.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 3 | [Securing Smart Contract with Runtime Valid…](./SolyThesis/SolyThesis.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 4 | [SODA](./SODA/SODA.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 5 | [TxSpector](./TxSpector/TxSpector.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 6 | [ÆGIS](./AEGIS/AEGIS.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 7 | [An Empirical Study of DeFi Liquidations](./sok_survey/An%20Empirical%20Study%20of%20DeFi%20Liquidations/An%20Empirical%20Study%20of%20DeFi%20Liquidations.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 8 | [Attacking the DeFi Ecosystem with Flash Lo…](./sok_survey/Attacking%20the%20DeFi%20Ecosystem%20with%20Flash%20Loans%20for%20Fun%20and%20Profit/Attacking%20the%20DeFi%20Ecosystem%20with%20Flash%20Loans%20for%20Fun%20and%20Profit.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 9 | [BLOCKEYE](./BlockEye/BlockEye.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 10 | [On the Just-In-Time Discovery of Profit-Ge…](./DeFiPoser/DeFiPoser.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 11 | [Smart Contract Vulnerabilities](./sok_survey/Smart%20Contract%20Vulnerabilities/Smart%20Contract%20Vulnerabilities.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 12 | [SoK](./sok_survey/SoK_Oracles%20from%20the%20Ground%20Truth%20to%20Market%20Manipulation/SoK_Oracles%20from%20the%20Ground%20Truth%20to%20Market%20Manipulation.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 13 | [The Eye of Horus](./Horus/Horus.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 14 | [TWAP Oracle Attacks](./TWAP%20Oracle%20Attacks/TWAP%20Oracle%20Attacks.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 15 | [Clockwork Finance](./Clockwork%20Finance/Clockwork%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 16 | [Demystifying Exploitable Bugs in Smart Con…](./sok_survey/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 17 | [Detecting Flash Loan Based Attacks in Ethe…](./Detecting_Flash_Loan_Based_Attacks_in_Ethereum/Detecting_Flash_Loan_Based_Attacks_in_Ethereum.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 18 | [InvCon](./InvCon/InvCon.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 19 | [Oracles in Decentralized Finance](./sok_survey/Oracles%20in%20Decentralized%20Finance/Oracles%20in%20Decentralized%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 20 | [Quantifying Blockchain Extractable Value](./sok_survey/Quantifying%20Blockchain%20Extractable%20Value/Quantifying%20Blockchain%20Extractable%20Value.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 21 | [Security Analysis of DeFi](./sok_survey/Security%20Analysis%20of%20DeFi/Security%20Analysis%20of%20DeFi.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 22 | [SoK](./sok_survey/SoK_Decentralized%20Finance/SoK_Decentralized%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 23 | [Time-travel Investigation](./EthScope/EthScope.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 24 | [Uniswap v3 TWAP Oracles in Proof of Stake](./UniswapV3%20TWAP%20Oracles%20in%20Proof%20of%20Stake/UniswapV3%20TWAP%20Oracles%20in%20Proof%20of%20Stake.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 25 | [A Robust Front-Running Methodology for Mal…](./FrontDef/FrontDef.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 26 | [BACKRUNNER](./BackRunner/BackRunner.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 27 | [Beyond the Public Mempool](./Beyond_the_Public_Mempool_final/Beyond_the_Public_Mempool_final.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 28 | [Blockchain Large Language Models](./BlockGPT/BlockGPT.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 29 | [DeFiRanger](./DeFiRanger/DeFiRanger.md) | 2023 | `DET-TX` | 사후/실시간 | 경보 | CFT+lifting+패턴8 | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | decoder FN295; evt-less 누락; 패턴 밖 미탐; 수익성 기준 |
-| 30 | [DeFiTainter](./DeFiTainter/DeFiTainter.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 31 | [DeFiWarder](./DeFiWarder/DeFiWarder.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 32 | [Flash Loan Attack Is More Than Just Price …](./Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation/Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 33 | [ItyFuzz](./ItyFuzz/ItyFuzz.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 34 | [POMABuster](./POMABuster/POMABuster.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 35 | [SoK](./sok_survey/SoK_Decentralized%20Finance%20Attacks/SoK_Decentralized%20Finance%20Attacks.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 36 | [The Blockchain Imitation Game](./Blockchain%20Imitation%20Game/Blockchain%20Imitation%20Game.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 37 | [Timely Identification of Victim Addresses …](./Identifying_Victims_in_DeFi_Attacks/Identifying_Victims_in_DeFi_Attacks.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 38 | [Toward Automated Detecting Unanticipated P…](./VeriOracle/VeriOracle.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 39 | [Your Exploit is Mine](./STING/STING.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 40 | [BlockScan](./BlockScan/BlockScan.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 41 | [DeFiGuard](./DeFiGuard/DeFiGuard.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 42 | [DeFort](./DeFort/DeFort.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 43 | [Demystifying Invariant Effectiveness for S…](./Trace2Inv/Trace2Inv.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 44 | [FlashSyn](./FlashSyn/FlashSyn.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 45 | [FORAY](./FORAY/FORAY.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 46 | [Instrumenting Transaction Trace Properties…](./Instrumenting%20Transaction%20Trace%20Properties%20in%20Smart%20Contracts/Instrumenting%20Transaction%20Trace%20Properties%20in%20Smart%20Contracts.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 47 | [Midas](./Midas/Midas.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 48 | [Revealing Adversarial Smart Contracts thro…](./FinDet/FinDet.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 49 | [Safeguarding DeFi Smart Contracts against …](./OVer/OVer.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 50 | [SecPLF](./SecPLF/SecPLF.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 51 | [SMARTINV](./SmartInv/SmartInv.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 52 | [SmartOracle](./SmartOracle/SmartOracle.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 53 | [AI Agent Smart Contract Exploit Generation](./AI%20Agent%20Smart%20Contract%20Exploit%20Generation/AI%20Agent%20Smart%20Contract%20Exploit%20Generation.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 54 | [AiRacleX](./AiRacleX/AiRacleX.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 55 | [Automated Attack Synthesis for Constant Pr…](./CPMMX/CPMMX.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 56 | [Automated Invariant Generation for Solidit…](./InvCon+/InvCon+.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 57 | [Detecting Various DeFi Price Manipulations…](./DeFiScope/DeFiScope.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 58 | [Enhancing Smart Contract Security Analysis…](./CLUE/CLUE.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 59 | [EvoPoC](./EvoPoC/EvoPoC.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 60 | [FLAMES](./Flames/Flames.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 61 | [Following Devils' Footprint](./SMARTCAT/SMARTCAT.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 62 | [LookAhead](./LookAhead/LookAhead.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 63 | [On-Chain Decentralized Learning and Cost-E…](./On-Chain%20Decentralized%20Learning%20and%20Cost-Effective%20Inference%20for%20DeFi%20Attack%20Mitigation/On-Chain%20Decentralized%20Learning%20and%20Cost-Effective%20Inference%20for%20DeFi%20Attack%20Mitigation.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 64 | [Ormer](./Ormer/Ormer.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 65 | [Penetrating the Hostile](./DeFiTail/DeFiTail.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 66 | [PropertyGPT](./PropertyGPT/PropertyGPT.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 67 | [Smart Contract Fuzzing Towards Profitable …](./VERITE/VERITE.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 68 | [Surviving in Dark Forest](./EVScope/EVScope.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 69 | [TraceLLM](./TraceLLM/TraceLLM.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 70 | [Cost of Manipulation in AMM-Based Oracles](./Cost%20of%20Manipulation%20in%20AMM-Based%20Oracles/Cost%20of%20Manipulation%20in%20AMM-Based%20Oracles.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 71 | [Decentralized finance security](./sok_survey/Decentralized%20finance%20security/Decentralized%20finance%20security.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 72 | [DeFiTrace](./DeFiTrace/DeFiTrace.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 73 | [Enforcing Control Flow Integrity on DeFi S…](./CrossGuard/CrossGuard.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 74 | [HOUSTON](./HOUSTON/HOUSTON.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 75 | [LLM-Powered Detection of Price Manipulatio…](./PMDetector/PMDetector.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| # | Work | Year | Venue | Cat | When | Resp | Mech | G1 | G2 | G3 | G4 | G5 | G6 | G7 | Gap |
+|:--:|:---|:---:|:---|:---:|:---|:---|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
+| 0 | **Ours** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | — |
+| 1 | [Sereum](./Sereum/Sereum.md) | 2019 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 2 | [Improved Price Oracles](./Improved%20Price%20Oralces/Improved%20Price%20Oralces.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 3 | [Securing Smart Contract with Runtime Valid…](./SolyThesis/SolyThesis.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 4 | [SODA](./SODA/SODA.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 5 | [TxSpector](./TxSpector/TxSpector.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 6 | [ÆGIS](./AEGIS/AEGIS.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 7 | [An Empirical Study of DeFi Liquidations](./sok_survey/An%20Empirical%20Study%20of%20DeFi%20Liquidations/An%20Empirical%20Study%20of%20DeFi%20Liquidations.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 8 | [Attacking the DeFi Ecosystem with Flash Lo…](./sok_survey/Attacking%20the%20DeFi%20Ecosystem%20with%20Flash%20Loans%20for%20Fun%20and%20Profit/Attacking%20the%20DeFi%20Ecosystem%20with%20Flash%20Loans%20for%20Fun%20and%20Profit.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 9 | [BLOCKEYE](./BlockEye/BlockEye.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 10 | [On the Just-In-Time Discovery of Profit-Ge…](./DeFiPoser/DeFiPoser.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 11 | [Smart Contract Vulnerabilities](./sok_survey/Smart%20Contract%20Vulnerabilities/Smart%20Contract%20Vulnerabilities.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 12 | [SoK](./sok_survey/SoK_Oracles%20from%20the%20Ground%20Truth%20to%20Market%20Manipulation/SoK_Oracles%20from%20the%20Ground%20Truth%20to%20Market%20Manipulation.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 13 | [The Eye of Horus](./Horus/Horus.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 14 | [TWAP Oracle Attacks](./TWAP%20Oracle%20Attacks/TWAP%20Oracle%20Attacks.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 15 | [Clockwork Finance](./Clockwork%20Finance/Clockwork%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 16 | [Demystifying Exploitable Bugs in Smart Con…](./sok_survey/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 17 | [Detecting Flash Loan Based Attacks in Ethe…](./Detecting_Flash_Loan_Based_Attacks_in_Ethereum/Detecting_Flash_Loan_Based_Attacks_in_Ethereum.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 18 | [InvCon](./InvCon/InvCon.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 19 | [Oracles in Decentralized Finance](./sok_survey/Oracles%20in%20Decentralized%20Finance/Oracles%20in%20Decentralized%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 20 | [Quantifying Blockchain Extractable Value](./sok_survey/Quantifying%20Blockchain%20Extractable%20Value/Quantifying%20Blockchain%20Extractable%20Value.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 21 | [Security Analysis of DeFi](./sok_survey/Security%20Analysis%20of%20DeFi/Security%20Analysis%20of%20DeFi.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 22 | [SoK](./sok_survey/SoK_Decentralized%20Finance/SoK_Decentralized%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 23 | [Time-travel Investigation](./EthScope/EthScope.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 24 | [Uniswap v3 TWAP Oracles in Proof of Stake](./UniswapV3%20TWAP%20Oracles%20in%20Proof%20of%20Stake/UniswapV3%20TWAP%20Oracles%20in%20Proof%20of%20Stake.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 25 | [A Robust Front-Running Methodology for Mal…](./FrontDef/FrontDef.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 26 | [BACKRUNNER](./BackRunner/BackRunner.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 27 | [Beyond the Public Mempool](./Beyond_the_Public_Mempool_final/Beyond_the_Public_Mempool_final.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 28 | [Blockchain Large Language Models](./BlockGPT/BlockGPT.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 29 | [DeFiRanger](./DeFiRanger/DeFiRanger.md) | 2023 | IEEE TDSC ✔ | `DET-TX` | 사후/실시간 | 경보 | CFT+lifting+패턴8 | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | decoder FN295; evt-less 누락; 패턴 밖 미탐; 수익성 기준 |
+| 30 | [DeFiTainter](./DeFiTainter/DeFiTainter.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 31 | [DeFiWarder](./DeFiWarder/DeFiWarder.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 32 | [Flash Loan Attack Is More Than Just Price …](./Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation/Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 33 | [ItyFuzz](./ItyFuzz/ItyFuzz.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 34 | [POMABuster](./POMABuster/POMABuster.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 35 | [SoK](./sok_survey/SoK_Decentralized%20Finance%20Attacks/SoK_Decentralized%20Finance%20Attacks.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 36 | [The Blockchain Imitation Game](./Blockchain%20Imitation%20Game/Blockchain%20Imitation%20Game.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 37 | [Timely Identification of Victim Addresses …](./Identifying_Victims_in_DeFi_Attacks/Identifying_Victims_in_DeFi_Attacks.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 38 | [Toward Automated Detecting Unanticipated P…](./VeriOracle/VeriOracle.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 39 | [Your Exploit is Mine](./STING/STING.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 40 | [BlockScan](./BlockScan/BlockScan.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 41 | [DeFiGuard](./DeFiGuard/DeFiGuard.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 42 | [DeFort](./DeFort/DeFort.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 43 | [Demystifying Invariant Effectiveness for S…](./Trace2Inv/Trace2Inv.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 44 | [FlashSyn](./FlashSyn/FlashSyn.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 45 | [FORAY](./FORAY/FORAY.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 46 | [Instrumenting Transaction Trace Properties…](./Instrumenting%20Transaction%20Trace%20Properties%20in%20Smart%20Contracts/Instrumenting%20Transaction%20Trace%20Properties%20in%20Smart%20Contracts.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 47 | [Midas](./Midas/Midas.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 48 | [Revealing Adversarial Smart Contracts thro…](./FinDet/FinDet.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 49 | [Safeguarding DeFi Smart Contracts against …](./OVer/OVer.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 50 | [SecPLF](./SecPLF/SecPLF.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 51 | [SMARTINV](./SmartInv/SmartInv.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 52 | [SmartOracle](./SmartOracle/SmartOracle.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 53 | [AI Agent Smart Contract Exploit Generation](./AI%20Agent%20Smart%20Contract%20Exploit%20Generation/AI%20Agent%20Smart%20Contract%20Exploit%20Generation.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 54 | [AiRacleX](./AiRacleX/AiRacleX.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 55 | [Automated Attack Synthesis for Constant Pr…](./CPMMX/CPMMX.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 56 | [Automated Invariant Generation for Solidit…](./InvCon+/InvCon+.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 57 | [Detecting Various DeFi Price Manipulations…](./DeFiScope/DeFiScope.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 58 | [Enhancing Smart Contract Security Analysis…](./CLUE/CLUE.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 59 | [EvoPoC](./EvoPoC/EvoPoC.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 60 | [FLAMES](./Flames/Flames.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 61 | [Following Devils' Footprint](./SMARTCAT/SMARTCAT.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 62 | [LookAhead](./LookAhead/LookAhead.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 63 | [On-Chain Decentralized Learning and Cost-E…](./On-Chain%20Decentralized%20Learning%20and%20Cost-Effective%20Inference%20for%20DeFi%20Attack%20Mitigation/On-Chain%20Decentralized%20Learning%20and%20Cost-Effective%20Inference%20for%20DeFi%20Attack%20Mitigation.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 64 | [Ormer](./Ormer/Ormer.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 65 | [Penetrating the Hostile](./DeFiTail/DeFiTail.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 66 | [PropertyGPT](./PropertyGPT/PropertyGPT.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 67 | [Smart Contract Fuzzing Towards Profitable …](./VERITE/VERITE.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 68 | [Surviving in Dark Forest](./EVScope/EVScope.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 69 | [TraceLLM](./TraceLLM/TraceLLM.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 70 | [Cost of Manipulation in AMM-Based Oracles](./Cost%20of%20Manipulation%20in%20AMM-Based%20Oracles/Cost%20of%20Manipulation%20in%20AMM-Based%20Oracles.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 71 | [Decentralized finance security](./sok_survey/Decentralized%20finance%20security/Decentralized%20finance%20security.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 72 | [DeFiTrace](./DeFiTrace/DeFiTrace.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 73 | [Enforcing Control Flow Integrity on DeFi S…](./CrossGuard/CrossGuard.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 74 | [HOUSTON](./HOUSTON/HOUSTON.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 75 | [LLM-Powered Detection of Price Manipulatio…](./PMDetector/PMDetector.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
