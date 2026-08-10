@@ -1,4 +1,4 @@
-# DeFort: Automatic Detection and Analysis of Price Manipulation Aacks in DeFi Applications
+# DeFort: Automatic Detection and Analysis of Price Manipulation Attacks in DeFi Applications
 
 Maoyi Xie Nanyang Technological University Singapore, Singapore maoyi001@e.ntu.edu.sg
 
