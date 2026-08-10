@@ -1,11 +1,9 @@
 # PMA 논문 목록
 
-Price Oracle Manipulation / DeFi 공격·방어 관련 논문 트래킹용 목록입니다.
-
 > Related Work 비교표(특성 축 · Venue · Gap Matrix)는 [related-work-comparison.md](./related-work-comparison.md) 참조.
 
 - 총 논문 수: **75**
-- 읽음: **0** / 미읽음: **75**
+- 읽음: **1** / 미읽음: **74**
 - 읽음 여부: `☐` 미읽음 · `☑` 읽음 (직접 체크해서 업데이트)
 
 ## 전체 목록
@@ -101,4 +99,11 @@ Price Oracle Manipulation / DeFi 공격·방어 관련 논문 트래킹용 목�
 | 2025 | 17 |
 | 2026 | 6 |
 
-> 연도는 논문 본문 메타데이터 및 공개 출처를 기준으로 기입했습니다.
+# 연구 진행 단계
+1. Research Question
+2. Threat Model
+3. Formal Definition
+4. Observation Model
+5. Methodology
+6. Implementation
+7. Evaluation
