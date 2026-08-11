@@ -3,14 +3,14 @@
 > Related Work 비교표(특성 축 · Venue · Gap Matrix)는 [related-work-comparison.md](./related-work-comparison.md) 참조.
 
 - 총 논문 수: **75**
-- 읽음: **1** / 미읽음: **74**
+- 읽음: **4** / 미읽음: **71**
 - 읽음 여부: `☐` 미읽음 · `☑` 읽음 (직접 체크해서 업데이트)
 
 ## 전체 목록
 
 | # | 제목 | 연도 | 읽음 |
 |---:|:---|:---:|:---:|
-| 1 | [Sereum: Protecting Existing Smart Contracts Against Re-Entrancy Attacks](./Sereum/Sereum.md) | 2019 | ☐ |
+| 1 | [Sereum: Protecting Existing Smart Contracts Against Re-Entrancy Attacks](./Sereum/Sereum.md) | 2019 | ☑ |
 | 2 | [Improved Price Oracles: Constant Function Market Makers](./Improved%20Price%20Oralces/Improved%20Price%20Oralces.md) | 2020 | ☐ |
 | 3 | [Securing Smart Contract with Runtime Validation](./SolyThesis/SolyThesis.md) | 2020 | ☐ |
 | 4 | [SODA: A Generic Online Detection Framework for Smart Contracts](./SODA/SODA.md) | 2020 | ☐ |
@@ -51,7 +51,7 @@
 | 39 | [Your Exploit is Mine: Instantly Synthesizing Counterattack Smart Contract](./STING/STING.md) | 2023 | ☐ |
 | 40 | [BlockScan: Detecting Anomalies in Blockchain Transactions](./BlockScan/BlockScan.md) | 2024 | ☐ |
 | 41 | [DeFiGuard: A Price Manipulation Detection Service in DeFi using Graph Neural Networks](./DeFiGuard/DeFiGuard.md) | 2024 | ☐ |
-| 42 | [DeFort: Automatic Detection and Analysis of Price Manipulation Attacks in DeFi Applications](./DeFort/DeFort.md) | 2024 | ☐ |
+| 42 | [DeFort: Automatic Detection and Analysis of Price Manipulation Attacks in DeFi Applications](./DeFort/DeFort.md) | 2024 | ☑ |
 | 43 | [Demystifying Invariant Effectiveness for Securing Smart Contracts](./Trace2Inv/Trace2Inv.md) | 2024 | ☐ |
 | 44 | [FlashSyn: Flash Loan Attack Synthesis via Counter Example Driven Approximation](./FlashSyn/FlashSyn.md) | 2024 | ☐ |
 | 45 | [FORAY: Towards Effective Attack Synthesis against Deep Logical Vulnerabilities in DeFi Protocols](./FORAY/FORAY.md) | 2024 | ☐ |
@@ -66,7 +66,7 @@
 | 54 | [AiRacleX: Automated Detection of Price Oracle Manipulations via LLM-Driven Knowledge Distillation](./AiRacleX/AiRacleX.md) | 2025 | ☐ |
 | 55 | [Automated Attack Synthesis for Constant Product Market Makers](./CPMMX/CPMMX.md) | 2025 | ☐ |
 | 56 | [Automated Invariant Generation for Solidity Smart Contracts](./InvCon+/InvCon+.md) | 2025 | ☐ |
-| 57 | [Detecting Various DeFi Price Manipulations with LLM Reasoning](./DeFiScope/DeFiScope.md) | 2025 | ☐ |
+| 57 | [Detecting Various DeFi Price Manipulations with LLM Reasoning](./DeFiScope/DeFiScope.md) | 2025 | ☑ |
 | 58 | [Enhancing Smart Contract Security Analysis with Execution Property Graphs](./CLUE/CLUE.md) | 2025 | ☐ |
 | 59 | [EvoPoC: Automated Exploit Synthesis for DeFi Smart Contracts via Hierarchical Evolution](./EvoPoC/EvoPoC.md) | 2025 | ☐ |
 | 60 | [FLAMES: Fine-tuning LLMs to Synthesize Invariants for Smart Contract Security](./Flames/Flames.md) | 2025 | ☐ |
