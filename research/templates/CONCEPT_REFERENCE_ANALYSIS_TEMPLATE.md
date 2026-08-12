@@ -1,0 +1,334 @@
+# 개념·참고 논문 정리 템플릿
+
+> 대상: 직접적인 탐지/시스템 논문이 아니라, 정의·경제 모델·공격 비용·수익·보안 조건·taxonomy·이론·empirical finding 등
+> **내 연구에 차용하거나 인용할 수 있는 근거**를 제공하는 논문.
+
+> 상태 사용 주의: `CANDIDATE / VERIFIED / ADOPTED / USED / REJECTED`는 출처 검증과 차용·인용 상태다. 연구 결정은 현재 저장소의 공식 상태인 `PROPOSED / ACCEPTED / REJECTED / SUPERSEDED / UNRESOLVED`를 사용한다.
+
+---
+
+# 0. Paper Triage
+
+```yaml
+title:
+authors:
+venue_year:
+primary_track: B
+secondary_tracks: []
+role_in_my_research:
+```
+
+## 이 논문을 읽는 이유
+-
+
+## 이 논문에서 반드시 가져와야 할 것
+-
+
+## 굳이 깊게 볼 필요 없는 부분
+-
+
+---
+
+# 1. 5줄 핵심 요약
+
+1.
+2.
+3.
+4.
+5.
+
+---
+
+# 2. 내 연구와의 연결점
+
+- [ ] MOTIVATION
+- [ ] DEFINITION
+- [ ] THEORETICAL_BASIS
+- [ ] DESIGN_INSPIRATION
+- [ ] ATTACK_MODEL
+- [ ] EVALUATION_BASIS
+- [ ] PARAMETER_BASIS
+- [ ] EMPIRICAL_EVIDENCE
+- [ ] COUNTERARGUMENT
+- [ ] LIMITATION_SUPPORT
+- [ ] 기타:
+
+### 한 문장으로
+> 이 논문은 내 연구의 **[무엇]**을 정당화/설계/평가하는 데 사용할 수 있다.
+
+---
+
+# 3. 가져올 핵심 개념
+
+## Concept C1
+
+### 개념명
+-
+
+### 원 논문의 정의
+[PAPER]
+-
+
+### 쉬운 설명
+[ANALYSIS]
+-
+
+### 성립 가정
+[PAPER / DERIVED]
+-
+
+### 적용 범위
+-
+
+### 내 연구에서 차용 가능성
+[ANALYSIS]
+-
+
+### 차용 방식
+- [ ] 그대로 차용
+- [ ] 일부 변형
+- [ ] 일반화 시도
+- [ ] 참고만 함
+
+### 변형 시 필요한 검증
+-
+
+---
+
+# 4. 핵심 Claim Bank
+
+| ID | 논문의 Claim | 위치 | 근거 유형 | 내 연구에서의 용도 | 상태 |
+|---|---|---|---|---|---|
+| CL1 | | Sec./p./Eq./Fig. | theoretical/empirical | | CANDIDATE |
+
+상태: `CANDIDATE / VERIFIED / USED / REJECTED`
+
+---
+
+# 5. Citation-ready Paraphrase Bank
+
+## CIT-01
+
+**Source locator:**  
+Section / page / equation / table / figure:
+
+**원 논문의 실제 주장:**  
+[PAPER]
+
+-
+
+**내 말로 정확히 바꾼 설명:**  
+[PARAPHRASE]
+
+-
+
+**어디에 사용할 수 있는가:**  
+Background / Related Work / Threat Model / Method / Evaluation / Discussion
+
+**주의할 caveat:**  
+-
+
+**Citation status:**  
+CANDIDATE / VERIFIED / USED / REJECTED
+
+---
+
+# 6. 수식 / 모델 / 알고리즘
+
+> 이 절은 수식을 나열하기 위한 곳이 아니라, 논문의 모델이 무엇을 계산하고 현재 연구에 옮겨도 되는지 확인하기 위한 기록이다. 먼저 쉬운 설명을 적고, 그 다음 단위·가정·입력 관측 가능성을 확인한다.
+
+## Model M1
+
+### 원 수식
+-
+
+### 변수
+
+| Symbol | Meaning | Unit / Domain |
+|---|---|---|
+| | | |
+
+### 이 수식이 설명하는 것
+-
+
+### 가정
+-
+
+### 입력값을 실제로 얻을 수 있는가?
+-
+
+### 내 연구에 적용한다면
+-
+
+### MODEL_TRANSFER_CHECK
+- [ ] 원 논문의 대상과 내 대상이 동일/호환되는가?
+- [ ] 필요한 변수를 실제 데이터에서 얻을 수 있는가?
+- [ ] 원 가정이 내 환경에서도 성립하는가?
+- [ ] atomic / multi-block 조건이 맞는가?
+- [ ] protocol-specific 요소가 있는가?
+- [ ] 일반화 시 추가 검증이 필요한가?
+
+### 판정
+`DIRECTLY_USABLE / ADAPTABLE / INSPIRATION_ONLY / NOT_APPLICABLE`
+
+---
+
+# 7. 중요한 의견 / 논리 / Insight
+
+## Insight I1
+
+### 논문에서 제기하는 생각
+[PAPER]
+-
+
+### 왜 흥미로운가?
+[ANALYSIS]
+-
+
+### 내 연구에서 새 질문을 유발하는가?
+-
+
+### 연결되는 연구 요소
+Definition / Threat Model / Observation / Method / Evaluation / Limitation / Discussion
+
+---
+
+# 8. 공격 조건 / 보안 조건
+
+## Condition K1
+
+### 조건
+-
+
+### 필요한 전제
+-
+
+### 만족하면 어떤 결과가 생기는가?
+-
+
+### 내 연구에서 predicate / feature / evaluation condition으로 사용할 수 있는가?
+-
+
+---
+
+# 9. Parameter 후보
+
+| Parameter | 논문에서의 의미 | 값/범위 | 근거 위치 | 내 연구 적용 여부 |
+|---|---|---|---|---|
+| | | | | |
+
+---
+
+# 10. Empirical Findings
+
+| Finding | Dataset/Setting | 근거 | 일반화 주의 | 내 연구 활용 |
+|---|---|---|---|---|
+| | | | | |
+
+> 실제 데이터가 아니라 수식으로 생성한 결과라면 `Simulation finding`으로 명시한다.
+
+---
+
+# 11. Figure / Table / Example Bank
+
+## Item F1
+
+**Type:** Figure / Table / Example / Case
+
+**위치:**
+
+**무엇을 보여주는가:**
+-
+
+**내가 이해하는 데 중요한 이유:**
+-
+
+**내 논문에서 어떤 논리로 활용할 것인가:**
+-
+
+---
+
+# 12. 반론 / 반례로 쓸 수 있는 내용
+
+### 내 현재 가정이나 방법론을 반박할 가능성이 있는가?
+-
+
+### 관련 Claim/Decision
+-
+
+### 영향
+`NONE / MINOR / MAJOR / REOPEN_DECISION`
+
+---
+
+# 13. 이 논문에서 가져오면 안 되는 것
+
+과장 또는 scope mismatch 위험이 있는 내용.
+
+-
+-
+
+예:
+- 특정 AMM 모델 결과를 모든 DeFi 가격 모델에 일반화
+- 특정 liquidity assumption을 arbitrary protocol에 그대로 적용
+- theoretical attack cost를 실제 공격자의 최소 보유 자본과 동일시
+- theoretical possibility를 empirical detection capability로 해석
+
+---
+
+# 14. 내가 실제로 차용할 후보
+
+## USE-01
+
+**차용 대상:** Concept / Definition / Formula / Parameter / Claim / Finding
+
+**내용:**
+-
+
+**사용 위치:**
+-
+
+**사용 목적:**
+-
+
+**필요한 추가 검증:**
+-
+
+**상태:** CANDIDATE / VERIFIED / ADOPTED / REJECTED
+
+---
+
+# 15. Related Research Seeds
+
+| Priority | Citation / Paper | 왜 읽어야 하나? | 무엇을 확인할까? |
+|---|---|---|---|
+| 1 | | | |
+
+---
+
+# 16. 최종 Takeaways
+
+### 반드시 기억할 개념 3개
+1.
+2.
+3.
+
+### 실제로 인용할 가능성이 높은 내용 3개
+1.
+2.
+3.
+
+### 내 방법론에 적용할 후보
+1.
+2.
+3.
+
+### 주의해야 할 가정
+1.
+2.
+3.
+
+### 이 논문 때문에 새로 생긴 질문
+1.
+2.
+3.

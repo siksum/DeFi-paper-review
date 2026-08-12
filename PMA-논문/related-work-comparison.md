@@ -1,6 +1,8 @@
 # Related Work 비교 정리 (PMA)
 
 > README 전체 75편 템플릿. Venue는 채우면서 `?` → 학회/저널명 ✔. 나머지 셀도 동일.
+>
+> 이 파일은 논문 간 특성을 빠르게 비교하는 요약표다. gap 후보의 상태, 반증 조건, 논문별 Evidence ID는 [리서치갭 통합 매트릭스](../논문읽기_Research_OS_v3/리서치갭_통합_매트릭스_템플릿_v3.md)에서 관리한다. G1~G7은 검증 전 비교축이며, 빈 셀이나 `○` 하나만으로 novelty를 확정하지 않는다.
 
 ## 범례
 
@@ -81,7 +83,7 @@ PMA 탐지는 아래 4단계 질문으로 분해된다. 축은 이 질문에 1:1
 | 16 | [Demystifying Exploitable Bugs in Smart Con…](./sok_survey/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 17 | [Detecting Flash Loan Based Attacks in Ethe…](./Detecting_Flash_Loan_Based_Attacks_in_Ethereum/Detecting_Flash_Loan_Based_Attacks_in_Ethereum.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 18 | [InvCon](./InvCon/InvCon.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 19 | [Oracles in Decentralized Finance](./sok_survey/Oracles%20in%20Decentralized%20Finance/Oracles%20in%20Decentralized%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 19 | [Oracles in Decentralized Finance](./sok_survey/Oracles%20in%20Decentralized%20Finance/내용%20정리.md) | 2023 | Entropy ✔ | `ORA` | 설계 시 | 위험평가 | TWAP+AMM 비용모델 | — | — | — | — | — | — | — | 직접 탐지 비교대상 아님; 근거 E-001~E-012 |
 | 20 | [Quantifying Blockchain Extractable Value](./sok_survey/Quantifying%20Blockchain%20Extractable%20Value/Quantifying%20Blockchain%20Extractable%20Value.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 21 | [Security Analysis of DeFi](./sok_survey/Security%20Analysis%20of%20DeFi/Security%20Analysis%20of%20DeFi.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 22 | [SoK](./sok_survey/SoK_Decentralized%20Finance/SoK_Decentralized%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
@@ -91,7 +93,7 @@ PMA 탐지는 아래 4단계 질문으로 분해된다. 축은 이 질문에 1:1
 | 26 | [BACKRUNNER](./BackRunner/BackRunner.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 27 | [Beyond the Public Mempool](./Beyond_the_Public_Mempool_final/Beyond_the_Public_Mempool_final.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 28 | [Blockchain Large Language Models](./BlockGPT/BlockGPT.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 29 | [DeFiRanger](./DeFiRanger/DeFiRanger.md) | 2023 | IEEE TDSC ✔ | `DET-TX` | 사후/실시간 | 경보 | CFT+lifting+패턴8 | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | decoder FN295; evt-less 누락; 패턴 밖 미탐; 수익성 기준 |
+| 29 | [DeFiRanger](./DeFiRanger/관련%20연구%20분석.md) | 2023 | IEEE TDSC ✔ | `DET-TX` | 사후/실시간 | 경보 | CFT+lifting+패턴8 | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | `E-005/012/014/016/018`: decoder FN295; event-less 누락; 패턴 밖 미탐; 수익성은 후보 필터 |
 | 30 | [DeFiTainter](./DeFiTainter/DeFiTainter.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 31 | [DeFiWarder](./DeFiWarder/DeFiWarder.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 32 | [Flash Loan Attack Is More Than Just Price …](./Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation/Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
@@ -104,7 +106,7 @@ PMA 탐지는 아래 4단계 질문으로 분해된다. 축은 이 질문에 1:1
 | 39 | [Your Exploit is Mine](./STING/STING.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 40 | [BlockScan](./BlockScan/BlockScan.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 41 | [DeFiGuard](./DeFiGuard/DeFiGuard.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 42 | [DeFort](./DeFort/DeFort.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| 42 | [DeFort](./DeFort/관련%20연구%20분석.md) | 2024 | ISSTA ✔ | `DET-ONLINE` | 사후/실시간 | 경보+행동분석 | 역사 가격 이상+관련 주소 이익 | ◐ | ◐ | ● | ◐ | ◐ | ◐ | ◐ | `E-009/019/031/032`: price adapter 필요; 역할·손익은 flow heuristic; consumption dataflow·반사실 없음 |
 | 43 | [Demystifying Invariant Effectiveness for S…](./Trace2Inv/Trace2Inv.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 44 | [FlashSyn](./FlashSyn/FlashSyn.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 | 45 | [FORAY](./FORAY/FORAY.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |

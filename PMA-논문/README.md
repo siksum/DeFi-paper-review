@@ -28,7 +28,7 @@
 | 16 | [Demystifying Exploitable Bugs in Smart Contracts](./sok_survey/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts.md) | 2022 | ☐ |
 | 17 | [Detecting Flash Loan Based Attacks in Ethereum](./Detecting_Flash_Loan_Based_Attacks_in_Ethereum/Detecting_Flash_Loan_Based_Attacks_in_Ethereum.md) | 2022 | ☐ |
 | 18 | [InvCon: A Dynamic Invariant Detector for Ethereum Smart Contracts](./InvCon/InvCon.md) | 2022 | ☐ |
-| 19 | [Oracles in Decentralized Finance: Attack Costs, Profits and Mitigation Measures](./sok_survey/Oracles%20in%20Decentralized%20Finance/Oracles%20in%20Decentralized%20Finance.md) | 2022 | ☐ |
+| 19 | [Oracles in Decentralized Finance: Attack Costs, Profits and Mitigation Measures](./sok_survey/Oracles%20in%20Decentralized%20Finance/내용%20정리.md) | 2023 | ☑ |
 | 20 | [Quantifying Blockchain Extractable Value: How dark is the forest?](./sok_survey/Quantifying%20Blockchain%20Extractable%20Value/Quantifying%20Blockchain%20Extractable%20Value.md) | 2022 | ☐ |
 | 21 | [Security Analysis of DeFi: Vulnerabilities, Attacks and Advances](./sok_survey/Security%20Analysis%20of%20DeFi/Security%20Analysis%20of%20DeFi.md) | 2022 | ☐ |
 | 22 | [SoK: Decentralized Finance (DeFi)](./sok_survey/SoK_Decentralized%20Finance/SoK_Decentralized%20Finance.md) | 2022 | ☐ |
@@ -38,7 +38,7 @@
 | 26 | [BACKRUNNER: Mitigating Smart Contract Attacks in the Real World](./BackRunner/BackRunner.md) | 2023 | ☐ |
 | 27 | [Beyond the Public Mempool: Catching DeFi Attacks Before They Happen with Real-Time Smart Contract Analysis](./Beyond_the_Public_Mempool_final/Beyond_the_Public_Mempool_final.md) | 2023 | ☐ |
 | 28 | [Blockchain Large Language Models](./BlockGPT/BlockGPT.md) | 2023 | ☐ |
-| 29 | [DeFiRanger: Detecting DeFi Price Manipulation Attacks](./DeFiRanger/내용%20정리.md) | 2023 | ☑ |
+| 29 | [DeFiRanger: Detecting DeFi Price Manipulation Attacks](./DeFiRanger/관련%20연구%20분석.md) | 2023 | ☑ |
 | 30 | [DeFiTainter: Detecting Price Manipulation Vulnerabilities in DeFi Protocols](./DeFiTainter/DeFiTainter.md) | 2023 | ☐ |
 | 31 | [DeFiWarder: Protecting DeFi Apps from Token Leaking Vulnerabilities](./DeFiWarder/DeFiWarder.md) | 2023 | ☐ |
 | 32 | [Flash Loan Attack Is More Than Just Price Oracle Manipulation: A Comprehensive Empirical Study](./Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation/Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation.md) | 2023 | ☐ |
@@ -51,7 +51,7 @@
 | 39 | [Your Exploit is Mine: Instantly Synthesizing Counterattack Smart Contract](./STING/STING.md) | 2023 | ☐ |
 | 40 | [BlockScan: Detecting Anomalies in Blockchain Transactions](./BlockScan/BlockScan.md) | 2024 | ☐ |
 | 41 | [DeFiGuard: A Price Manipulation Detection Service in DeFi using Graph Neural Networks](./DeFiGuard/DeFiGuard.md) | 2024 | ☐ |
-| 42 | [DeFort: Automatic Detection and Analysis of Price Manipulation Attacks in DeFi Applications](./DeFort/DeFort.md) | 2024 | ☑ |
+| 42 | [DeFort: Automatic Detection and Analysis of Price Manipulation Attacks in DeFi Applications](./DeFort/관련%20연구%20분석.md) | 2024 | ☑ |
 | 43 | [Demystifying Invariant Effectiveness for Securing Smart Contracts](./Trace2Inv/Trace2Inv.md) | 2024 | ☐ |
 | 44 | [FlashSyn: Flash Loan Attack Synthesis via Counter Example Driven Approximation](./FlashSyn/FlashSyn.md) | 2024 | ☐ |
 | 45 | [FORAY: Towards Effective Attack Synthesis against Deep Logical Vulnerabilities in DeFi Protocols](./FORAY/FORAY.md) | 2024 | ☐ |
@@ -93,8 +93,8 @@
 | 2019 | 1 |
 | 2020 | 5 |
 | 2021 | 8 |
-| 2022 | 10 |
-| 2023 | 15 |
+| 2022 | 9 |
+| 2023 | 16 |
 | 2024 | 13 |
 | 2025 | 17 |
 | 2026 | 6 |
@@ -107,3 +107,15 @@
 5. Methodology
 6. Implementation
 7. Evaluation
+
+# 논문 읽기 운영
+
+논문을 읽기 전에 Core Method, Concept/Theory, Survey/SoK, Empirical/Incident, Standard/Official Evidence 중 primary·secondary 역할을 먼저 정한다.
+
+- 직접 방법론·탐지 논문: [`핵심_방법론_논문_정리_템플릿_v3.md`](../논문읽기_Research_OS_v3/핵심_방법론_논문_정리_템플릿_v3.md)
+- 개념·수식·경제 모델 논문: [`개념_참고논문_정리_템플릿.md`](../논문읽기_Research_OS_v3/개념_참고논문_정리_템플릿.md)
+- 현재 연구 상태: [`연구_OS_상태보드_템플릿_v3.md`](../논문읽기_Research_OS_v3/연구_OS_상태보드_템플릿_v3.md)
+- 논문 간 gap 누적·반증: [`리서치갭_통합_매트릭스_템플릿_v3.md`](../논문읽기_Research_OS_v3/리서치갭_통합_매트릭스_템플릿_v3.md)
+- 재사용 가능한 정의·수식·주장: [`인용_아이디어_뱅크_템플릿.md`](../논문읽기_Research_OS_v3/인용_아이디어_뱅크_템플릿.md)
+
+논문 한 편의 분석이 끝나면 노트만 저장하지 않고 상태보드·리서치갭 통합 매트릭스·인용 아이디어 뱅크를 함께 갱신한다. `읽음` 체크는 원문을 읽었다는 뜻일 뿐, 근거 확인·artifact 감사·gap 검증까지 완료했다는 뜻은 아니다.

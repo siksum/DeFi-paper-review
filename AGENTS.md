@@ -115,4 +115,68 @@ Freeze는 영구 봉인이 아니다. 후속 반례로 다시 열 수 있지만,
 ## 9. 현재 작업 맥락
 
 현재 맥락과 열린 문제는 `research/WORKING_CONTEXT.md`, 확정 및 변경 이력은 `research/DECISIONS.md`를 따른다.
+사용자가 제공한 Research OS v3 문서와 이 저장소 정본의 대응 관계는 `research/README.md`를 따른다.
 
+## 10. 논문 유형 라우팅
+
+모든 논문에 동일한 분석표를 강제로 적용하지 않는다. 읽기 전에 이 논문이 현재 연구에서 담당하는 역할을 먼저 분류한다.
+
+- **Track A — Core Method / Detection**: 탐지·분석 방법, 그래프·taint·invariant, 판정식, 역할·손익 복원, baseline 비교를 제안한다. `논문읽기_Research_OS_v3/핵심_방법론_논문_정리_템플릿_v3.md`를 사용한다.
+- **Track B — Concept / Theory / Economic Model**: 공격 비용·수익, oracle·AMM·vault·lending 모델, 공격 가능 조건, 경제적 인센티브, 정의·수식을 제공한다. `논문읽기_Research_OS_v3/개념_참고논문_정리_템플릿.md`를 사용한다.
+- **Track C — Survey / SoK / Taxonomy**: 분야 지도, 용어, 공격 family, 추가 문헌 후보를 제공한다. 세부 기술 주장의 최종 근거로 삼지 않고 원 논문을 역추적한다.
+- **Track D — Empirical / Measurement / Incident**: 실제 빈도·패턴·사건·피해·dataset 구축 근거를 제공한다. 문제 중요성, 사례 선택, 평가 설계에 사용하되 보고서의 역할 label을 방법 입력으로 가져오지 않는다.
+- **Track E — Standard / Specification / Official Report**: 의도된 동작, 공식 요구사항, 사고 사실을 확인한다. 사양과 실제 실행 관측을 구분한다.
+
+한 논문에 하나의 `primary track`과 필요한 만큼의 `secondary track`을 부여한다. Track은 논문의 우열이 아니라 추출 목적을 뜻한다. 분류가 모호하면 `UNRESOLVED`로 두고 양쪽에 필요한 최소 항목만 읽는다.
+
+논문을 읽기 전에 다음 triage를 짧게 기록한다.
+
+1. Primary / secondary track
+2. 이 분류의 근거
+3. 반드시 추출할 내용
+4. 굳이 채우지 않을 항목
+5. 현재 연구에서 예상되는 용도
+
+## 11. 문헌 검토 Research OS
+
+자동화의 목적은 연구 결정을 대신하는 것이 아니라 반복적인 추출·비교·반증·상태 동기화를 돕는 것이다.
+
+이 저장소를 논문 원문, 분석 노트, gap, 결정, 구현·평가 상태의 중심 저장소로 유지한다. Litmaps·ResearchRabbit 같은 citation-network 도구는 추가 논문 발견, SciSpace류 도구는 검색·초기 내용 파악, Zotero는 선택적인 서지·인용 관리에 사용할 수 있지만 어느 도구의 요약·분류도 검증된 근거나 현재 결정으로 자동 승격하지 않는다. Zotero를 사용하지 않아도 현재 문헌 검토를 진행할 수 있으며, 추후 인용 관리 비용이 커질 때 별도 도입할 수 있다.
+
+### 자동으로 수행할 수 있는 작업
+
+- 서지정보와 artifact 후보 정리
+- 논문 track의 잠정 분류
+- claim·근거 위치·가정·한계 초안 추출
+- Evidence Ledger와 비교표 갱신
+- 인용 후보와 gap 후보 등록
+- 기존 gap을 반박하거나 약화하는 증거 탐색
+- 논문 간 정의·결과 충돌 탐색
+- `UNKNOWN`, 미평가, 미재현 항목 추적
+
+### 자동으로 확정하지 않는 작업
+
+- 최종 Research Question, novelty, contribution
+- 공격·위협·피해의 핵심 정의
+- 방법론의 핵심 predicate와 graph schema
+- dataset 포함·제외 기준의 변경
+- 지원 범위 확대와 claim 강도 변경
+- 기존 `ACCEPTED` 결정의 변경
+
+중요한 gap·주장·방법론 후보는 다음 순서로 검토한다.
+
+`PROPOSE → 가장 강한 반론 탐색 → 문헌·사례·관측 가능성으로 검증 → REVISE/REJECT → 사용자 승인 → ACCEPTED 기록`
+
+공유 대화에서 사용한 `FROZEN`, `VERIFIED` 등의 상태를 별도 연구 결정 상태로 추가하지 않는다. 이 저장소에서는 제3절의 상태와 `DECISIONS.md`를 유일한 결정 상태 체계로 사용한다. 개별 출처의 검증 여부와 인용 사용 여부는 연구 결정 상태와 분리해 기록한다.
+
+## 12. 논문 한 편을 읽은 뒤 동기화
+
+분석이 끝나면 해당 논문 노트만 작성하고 멈추지 않는다. 근거가 있는 범위에서 다음을 함께 확인한다.
+
+1. `논문읽기_Research_OS_v3/리서치갭_통합_매트릭스_템플릿_v3.md`: 기존 gap 후보를 지원·약화·반박하는가? 새 후보가 필요한가?
+2. `논문읽기_Research_OS_v3/인용_아이디어_뱅크_템플릿.md`: 정의·수식·주장·반례 중 다시 쓸 수 있는 항목이 있는가?
+3. `논문읽기_Research_OS_v3/연구_OS_상태보드_템플릿_v3.md`: 열린 문제·가설·반례·다음 작업이 새로 생기거나 닫혔는가?
+4. `PMA-논문/related-work-comparison.md`: 직접 비교 대상이면 어떤 셀을 Evidence ID와 함께 갱신할 수 있는가?
+5. `research/DECISIONS.md`: `ACCEPTED` 결정과 충돌하는가? 충돌하면 자동 변경하지 말고 변경 후보와 영향을 제시한다.
+
+새 논문이 기존 gap을 닫으면 불편하더라도 gap을 약화하거나 기각한다. 기능이 없다는 사실과 논문의 목적상 필요하지 않았다는 사실을 구분하며, 한 편의 부재만으로 분야 전체의 gap을 확정하지 않는다.

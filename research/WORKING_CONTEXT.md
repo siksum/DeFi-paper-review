@@ -1,6 +1,6 @@
 # PMA 연구 작업 맥락
 
-최종 갱신일: 2026-08-10
+최종 갱신일: 2026-08-12
 
 ## 1. 이 문서의 지위
 
@@ -68,8 +68,14 @@ Codex와 함께 DeFi price manipulation attack 연구 방법론을 논리적이�
 12. 정보 그래프의 최소 node·edge schema
 13. 최종 detection predicate
 14. 공격 사례와 hard-negative 평가 세트
+15. 관측된 왜곡의 `조건부 최소 순간자금`을 계산할 때 고정할 공격경로·평가함수·시간 범위·다중자산 가치평가 기준
+16. protocol adapter 유무에 따른 semantic coverage·UNKNOWN을 어떤 평가 단위로 분리할지
 
 과거 답변에 위 항목의 후보안이 있어도 자동으로 채택하지 않는다.
+
+DeFiRanger에서 수동 external information 부족과 관련된 semantic FN 295건, 정상 fee·buyback 메커니즘에 의한 26 FP가 확인되었다. 이는 14번과 16번의 직접 검토 근거지만, 한 논문만으로 분야 전체 gap이나 D-008의 해답을 확정하지 않는다.
+
+DeFort는 `역사 가격 이상 + 관련 주소 이익`으로 경보를 만들고 attacker·victim·profiteer·fund flow·associated function까지 출력한다. 따라서 역할·분석 출력이 전혀 없다는 넓은 gap 주장은 약화된다. 다만 역할은 anomaly와 token flow 휴리스틱이며, complex price model과 trace return 누락이 실제 FN으로 이어졌고, full NAV·control clustering·return-value→settlement dependency·counterfactual loss는 검증하지 않았다. 이 근거도 D-008이나 최종 gap을 자동 확정하지 않는다.
 
 ## 6. 확정된 연구 방향 요약
 
@@ -106,12 +112,32 @@ Codex와 함께 DeFi price manipulation attack 연구 방법론을 논리적이�
 
 ## 8. 현재 저장소의 관련 자료
 
-- `research/templates/RELATED_WORK_ANALYSIS_TEMPLATE.md`: 논문별 근거 중심 분석 템플릿
+- `논문읽기_Research_OS_v3/핵심_방법론_논문_정리_템플릿_v3.md`: Track A 논문별 분석 템플릿
+- `논문읽기_Research_OS_v3/개념_참고논문_정리_템플릿.md`: Track B 논문별 분석 템플릿
+- `논문읽기_Research_OS_v3/연구_OS_상태보드_템플릿_v3.md`: 현재 상태와 열린 문제의 운영 정본
+- `논문읽기_Research_OS_v3/리서치갭_통합_매트릭스_템플릿_v3.md`: gap과 cross-paper 비교의 운영 정본
+- `논문읽기_Research_OS_v3/인용_아이디어_뱅크_템플릿.md`: 인용·수식·설계 아이디어의 운영 정본
+- `research/README.md`: Research OS 정본 경로와 사용 순서
+- `research/RESEARCH_GAP_LEDGER.md`: gap 후보와 이를 지원·약화·반박하는 논문 근거 장부
+- `research/CITATION_IDEA_BANK.md`: 재사용 가능한 정의·수식·주장·반례의 출처 및 적용 경계 장부
 - `research/DECISION_QUEUE.md`: 사용자 결정과 증거 기반 방법론 결정을 분리한 대기열
 - `PMA-논문/README.md`: 논문 목록과 연구 진행 단계
 - `PMA-논문/related-work-comparison.md`: G1~G7 비교축과 현재 gap 초안
-- `PMA-논문/DeFiRanger/내용 정리.md`: cash-flow tree와 semantic lifting 정리
-- `PMA-논문/DeFort/DeFort.md`: 가격 이상·price read·profit 모델
+- `PMA-논문/DeFiRanger/관련 연구 분석.md`: cash-flow tree·semantic lifting·8개 PMA pattern, 평가 오류와 적용 한계의 근거 장부
+- `PMA-논문/DeFort/관련 연구 분석.md`: 가격 이상·price read·profit 모델과 attacker/victim/profiteer·자금 흐름 분석의 근거 장부
 - `PMA-논문/CLUE/CLUE.md`: execution property graph
 - `PMA-논문/SMARTCAT/SMARTCAT.md`: token-flow 및 control/data-flow 기반 선제 탐지
 - `PMA-논문/Identifying_Victims_in_DeFi_Attacks/Identifying_Victims_in_DeFi_Attacks.md`: victim 후보 식별
+- `PMA-논문/sok_survey/Oracles in Decentralized Finance/내용 정리.md`: DEX oracle의 조작자원·담보·단순 이익 모델과 실제 사건 이전 한계
+
+## 9. 문헌 검토 운영 방식
+
+2026-08-12에 사용자가 제공한 Research OS v3 문서의 방향을 현재 저장소 규칙에 맞게 통합했다.
+
+- 논문을 Core Method, Concept/Theory, Survey/SoK, Empirical/Incident, Standard/Official Evidence의 역할로 먼저 분류한다.
+- 직접 방법론 논문과 개념·수식·실증 참고 논문에 서로 다른 템플릿을 사용한다.
+- 논문별 노트에서 끝내지 않고 제공된 상태보드·리서치갭 통합 매트릭스·인용 아이디어 뱅크 파일을 직접 갱신한다.
+- 새 논문은 기존 gap을 뒷받침하는 자료뿐 아니라 gap을 약화하거나 닫는 반증으로도 검사한다.
+- 자동화는 추출·비교·반증·상태 동기화를 지원하지만 RQ, novelty, contribution과 `ACCEPTED` 결정은 자동 확정하지 않는다.
+- 공유 대화의 상태명은 별도로 가져오지 않고 이 저장소의 결정 상태 체계를 유지한다.
+- 이 저장소를 현재 연구 자료와 상태의 중심으로 사용한다. citation-network·AI 검색 도구는 발견과 초기 분석 보조이며, Zotero 도입은 현재 필수가 아니다.
