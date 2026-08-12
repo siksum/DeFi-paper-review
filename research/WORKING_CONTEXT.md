@@ -77,6 +77,10 @@ DeFiRanger에서 수동 external information 부족과 관련된 semantic FN 295
 
 DeFort는 `역사 가격 이상 + 관련 주소 이익`으로 경보를 만들고 attacker·victim·profiteer·fund flow·associated function까지 출력한다. 따라서 역할·분석 출력이 전혀 없다는 넓은 gap 주장은 약화된다. 다만 역할은 anomaly와 token flow 휴리스틱이며, complex price model과 trace return 누락이 실제 FN으로 이어졌고, full NAV·control clustering·return-value→settlement dependency·counterfactual loss는 검증하지 않았다. 이 근거도 D-008이나 최종 gap을 자동 확정하지 않는다.
 
+DeFiScope는 Transfer Graph로 6개 DeFi operation을 복원하고, verified source의 가격 관련 코드와 token balance/supply delta를 LLM에 제공해 정확한 가격이 아니라 증가·감소 방향을 추론한 뒤 8개 pattern으로 PMA 후보를 탐지한다. D1에서 76/95를 탐지했고, 1,000-transaction semantic benchmark에서 TG recall 0.912를 보고했으며, D2에서는 147/153 precision, D3 96,800건에서는 false alarm 0을 보고했다. 반면 source·compile·ERC-20·single-transaction·수치추론 한계가 실제 FN으로 나타났고, 방법 출력에는 attacker/victim 귀속과 actual/counterfactual P&L·victim loss가 없다. 이는 D-005·007·010의 경계를 강화하지만 기존 ACCEPTED 결정을 변경하지 않는다.
+
+Sereum은 PMA 직접 탐지기가 아니라 재진입 runtime defense이지만, 수정 EVM에서 `SLOAD` 값이 stack·memory를 거쳐 `JUMPI` 조건에 사용되고 같은 contract의 이전 invocation이 동일 storage address에 `SSTORE`하는 경로를 실제 실행으로 연결한다. 이는 호출 존재·시간적 인접성보다 강한 consumption 후보 edge와 event-less observation의 인접 근거다. 반면 packed field·trust·manual mutex 의미를 잃어 오탐이 생기며 가격 왜곡·경제 정산·역할·손익은 다루지 않는다. 따라서 GAP-003·007의 넓은 부재 주장은 약화하지만, Sereum의 PMA 기능 부재 자체는 gap 지지 근거로 사용하지 않는다. 기존 ACCEPTED 결정과 충돌하지 않는다.
+
 ## 6. 확정된 연구 방향 요약
 
 세부 내용과 변경 이력은 `DECISIONS.md`를 따른다.
@@ -122,9 +126,11 @@ DeFort는 `역사 가격 이상 + 관련 주소 이익`으로 경보를 만들�
 - `research/CITATION_IDEA_BANK.md`: 재사용 가능한 정의·수식·주장·반례의 출처 및 적용 경계 장부
 - `research/DECISION_QUEUE.md`: 사용자 결정과 증거 기반 방법론 결정을 분리한 대기열
 - `PMA-논문/README.md`: 논문 목록과 연구 진행 단계
-- `PMA-논문/related-work-comparison.md`: G1~G7 비교축과 현재 gap 초안
+- `PMA-논문/related-work-comparison.md`: 검토 완료 논문의 방법·입력·출력·역할·손익·평가·gap을 한데 모은 공통 통합 비교 정본
 - `PMA-논문/DeFiRanger/관련 연구 분석.md`: cash-flow tree·semantic lifting·8개 PMA pattern, 평가 오류와 적용 한계의 근거 장부
 - `PMA-논문/DeFort/관련 연구 분석.md`: 가격 이상·price read·profit 모델과 attacker/victim/profiteer·자금 흐름 분석의 근거 장부
+- `PMA-논문/DeFiScope/관련 연구 분석.md`: Transfer Graph·LLM 가격 방향·8개 pattern과 source/single-tx/역할·손익 한계의 근거 장부
+- `PMA-논문/Sereum/관련 연구 분석.md`: dynamic taint·call tree·write lock과 storage-control dependency, semantic-loss 오탐의 인접 근거 장부
 - `PMA-논문/CLUE/CLUE.md`: execution property graph
 - `PMA-논문/SMARTCAT/SMARTCAT.md`: token-flow 및 control/data-flow 기반 선제 탐지
 - `PMA-논문/Identifying_Victims_in_DeFi_Attacks/Identifying_Victims_in_DeFi_Attacks.md`: victim 후보 식별

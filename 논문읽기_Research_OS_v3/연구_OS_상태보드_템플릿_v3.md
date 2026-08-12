@@ -80,6 +80,8 @@ evaluation:
 | Q-05 | multi-block 이론 모델과 실제 실행 증거 복원 사이의 차이를 어떻게 평가할 것인가? | GAP-008 | multi-block incident와 ground truth | 낮음(v1 이후) |
 | Q-06 | protocol adapter가 없을 때의 coverage 하락을 어떻게 측정하고 UNKNOWN으로 보존할 것인가? | `DeFiRanger-2023` E-005·012·016; GAP-001·007 | adapter/no-adapter ablation과 미등록 protocol 평가 | 높음 |
 | Q-07 | 자기 pool의 역사 가격 범위를 reference로 쓸 때 정상 시장 이동·저유동성·점진적 오염을 어떻게 구분할 것인가? | `DeFort-2024` E-004·011·021; GAP-002·006 | 독립 reference와 정상 대형 swap·arbitrage 대조 | 높음 |
+| Q-08 | code+balance delta에서 추론한 가격 방향을 execution-level 경제값 증거와 어떻게 검증·calibrate할 것인가? | `DeFiScope-2025` E-001·002·017; GAP-002·003 | 동일 사건의 pre/post state·actual return·settlement dataflow와 대조 | 높음 |
+| Q-09 | instruction-level taint를 PMA의 경제값 소비·정산 edge로 승격할 때 overtaint와 의미·trust 손실을 어떻게 통제할 것인가? | `Sereum-2019` SER-E02~05·10·12; GAP-003·006·007 | PMA vertical slice의 external return→decision/settlement taint와 정상 oracle·liquidation 반례 | 높음 |
 
 ---
 
@@ -87,14 +89,14 @@ evaluation:
 
 | Gap | 상태 | Supporting Papers | Opposing/Solving Papers | 다음 검증 |
 |---|---|---|---|---|
-| GAP-001 | UNRESOLVED | DeFiRanger E-005·012와 DeFort E-008~010·019·028에서 수동 protocol/value 지식 의존과 관련 FN이 반복 | DeFort의 behavior core와 일부 mainstream template는 범용화를 부분 제공 | DeFiScope·DeFiTainter의 no-adapter coverage 비교 |
-| GAP-002 | UNRESOLVED | DeFiRanger E-008은 call 존재, DeFort E-009·010·019는 template/signature/custom strategy로 surface를 찾음 | DeFort는 PCM과 역사 bound를 제공해 단순 부재 주장을 약화 | VeriOracle·value-flow 연구와 자동 surface 비교 |
-| GAP-003 | UNRESOLVED | DeFiRanger E-006~010과 DeFort E-005·013~015·031은 action/price-read/fund-flow를 연결하지만 return value→정산 dataflow는 없음 | DeFort는 anomaly→profit→행동분석의 더 긴 경로를 제공 | BGLD/LeetSwap vertical slice로 edge별 근거 대조 |
-| GAP-004 | UNRESOLVED | DeFort E-013·022는 attacker/victim/profiteer를 출력해 '귀속 없음'을 약화하지만 control cluster·component metric·final loss bearer는 없음 | DeFiRanger는 독립 attribution schema가 없음 | victim/beneficiary attribution 연구 감사 |
-| GAP-005 | UNRESOLVED | DeFort E-006·012·032는 `Out-In` 환산 profit을 계산하나 full NAV·반사실 gain/loss는 없음 | Oracles는 자원·담보·단순 profit을 구분해 넓은 주장을 약화 | canonical ledger와 counterfactual 연구 감사 |
-| GAP-006 | UNRESOLVED | DeFiRanger E-014는 정상 mechanics FP를 보고; DeFort E-002·021은 anomaly+profit과 assumed-normal D2 0 alert를 제공 | DeFort가 수익성 단독 판정보다 강해 넓은 주장을 약화하지만 hard-negative family별 검증 없음 | 정상 대형 swap·arbitrage·liquidation 대조 |
-| GAP-007 | UNRESOLVED | DeFiRanger E-005·016과 DeFort E-019·028에서 event/trace·return-value 관측 누락이 실제 FN으로 연결 | DeFort는 RPC state·prior DB로 일부 보완 | state diff·opcode dataflow 연구 감사 |
-| GAP-008 | UNRESOLVED | DeFiRanger는 single tx; DeFort E-005·014는 history와 관련 multi-transaction flow를 추적 | Oracles의 `m` 모델과 DeFort가 '완전 미지원' 주장을 약화하지만 실행 증거 창·cross-tx 인과는 미보고 | v1 이후 multi-block 연구 감사 |
+| GAP-001 | UNRESOLVED | DeFiRanger·DeFort의 수동 adapter 실패에 더해 DeFiScope E-008·009·012에서 keyword·source·compile 의존과 관련 FN이 반복 | DeFiScope의 source+LLM은 custom model용 수동 PCM 부재를 일부 해결 | DeFiTainter no-adapter·unknown-protocol 비교 |
+| GAP-002 | UNRESOLVED | DeFort의 template/signature와 DeFiScope E-001·002·008의 keyword+code reasoning이 surface 후보를 일부 자동화 | DeFiScope는 exact rate를 피하고 방향을 추론해 넓은 '식별 없음' 주장을 약화 | VeriOracle·value-flow 연구와 exact surface 비교 |
+| GAP-003 | UNRESOLVED | 세 PMA detector는 action/price 후보를 연결하지만 return value→정산 dataflow는 없음 | DeFort·DeFiScope가 더 긴 semantic 경로를 제공하고, Sereum SER-E02~05는 인접 reentrancy domain에서 실제 storage→control→write 의존성을 구현 | BGLD/LeetSwap vertical slice에서 external return→settlement 확장 가능성 검증 |
+| GAP-004 | UNRESOLVED | DeFort는 역할 후보를 출력하지만 DeFiScope E-018은 independent attribution을 출력하지 않음 | 역할 출력 전면 부재 주장은 DeFort가 약화 | victim/beneficiary attribution 연구 감사 |
+| GAP-005 | UNRESOLVED | DeFort는 `Out-In` 환산 profit, DeFiScope E-018은 수동 GT profit만 제공; full NAV·반사실 gain/loss·victim loss는 없음 | Oracles와 DeFort가 자원·부분 profit 전면 부재 주장을 약화 | canonical ledger와 counterfactual 연구 감사 |
+| GAP-006 | UNRESOLVED | DeFiScope E-007·013~015는 direction+semantic pattern, D2 6 FP, D3 96,800건 0 FP를 제공; Sereum SER-E10은 인접 domain에서 field·trust 의미 손실 오탐을 보임 | 대규모 benign 평가와 실제 dependency는 넓은 discrimination 부재 주장을 약화하지만 PMA family별 hard-negative 없음 | 정상 대형 swap·arbitrage·liquidation 대조 |
+| GAP-007 | UNRESOLVED | DeFiScope E-005·010·012에서 Transfer·source/compile·non-ERC20 누락이 FN으로 연결 | call trace·source·RPC state에 더해 Sereum SER-E02~05의 modified-EVM opcode·stack·memory·storage 관측이 전면 부재 주장을 약화 | state diff·opcode dataflow의 비용·배치·누락 감사 |
+| GAP-008 | UNRESOLVED | DeFiScope single-tx 제한이 cross-transaction 실제 FN으로 연결; DeFort는 history·related flow로 전면 부재만 약화 | Oracles의 `m`과 DeFort가 시간 범위 확장 후보 제공 | v1 이후 multi-block 연구 감사 |
 
 ---
 
@@ -106,6 +108,8 @@ evaluation:
 | H-02 | 수익성만으로 PMA와 정상 경제행위를 구별할 수 없다. | PROPOSED | profitability가 hard negative 없이도 충분조건임을 보인 연구 | arbitrage·liquidation 대조 |
 | H-03 | protocol-specific enrichment를 선택 adapter로 분리하고 no-adapter 성능을 함께 보고해야 일반성과 복원률을 정직하게 평가할 수 있다. | PROPOSED | adapter 없이도 미등록 protocol에서 동등한 semantic coverage를 보이는 방법 | DeFiRanger 재평가 또는 후속 연구의 ablation 감사 |
 | H-04 | 자기 pool의 역사 가격 이상과 시간적으로 관련된 양의 이익만으로는 manipulation-attributable causality를 보장할 수 없다. | PROPOSED | 정상 시장 충격·arbitrage에서도 해당 조합이 발생하지 않거나 인과적으로 모두 배제됨 | DeFort predicate를 정상 대형 swap·backrun에 적용 |
+| H-05 | price direction과 semantic operation pattern은 exact distortion·value consumption·role·손익을 대체하지 못한다. | PROPOSED | direction+pattern만으로 execution-level value·settlement dependency·역할·손익이 정확히 재현됨 | DeFiScope 사건 하나를 causal witness·manual ledger와 대조 |
+| H-06 | instruction-level data dependence는 candidate consumption edge를 검증할 수 있지만, 경제 의미와 trust가 없으면 PMA 판정·귀속까지 닫히지 않는다. | PROPOSED | taint edge만으로 경제적 이용·정상성·역할·손익이 모두 정확히 재현됨 | Sereum식 taint를 PMA 사건과 정상 oracle 소비에 수동 적용 |
 
 ---
 
@@ -126,6 +130,8 @@ evaluation:
 | CON-01 | attack cost의 의미 | ORACLES-DEFI-2023은 이론적 AC·담보·profit을 계산 | 실제 사건 P&L에는 fee·debt·unwind·valuation 필요 | UNRESOLVED; 직접 이전 금지 |
 | CON-02 | platform-independent의 의미 | `DeFiRanger-2023`은 Ethereum·BSC에 적용 가능한 일반 방법을 주장 | E-005·012·016은 internal ledger용 수동 정보와 ERC-20 event 의존을 보고 | UNRESOLVED; core 이식성과 adapter-free coverage를 분리해야 함 |
 | CON-03 | 자동화된 공격 분석의 의미 | `DeFort-2024`는 attacker·victim·profiteer·fund flow·associated function을 자동 출력하고 50/52 분석 성공을 보고 | E-013·022·031·032는 역할·금액·causal edge별 metric, control clustering, 반사실 손익이 없음을 보임 | UNRESOLVED; 사건 요약 정확도와 세부 귀속 정확도를 분리해야 함 |
+| CON-04 | 다양한 가격모델 탐지의 의미 | `DeFiScope-2025`는 source+LLM으로 custom price model의 direction을 추론하고 4 family를 탐지 | E-001·012·017·018은 exact reference·distortion·consumption·역할·손익이 없고 source/compile·정밀 계산 FN을 보임 | UNRESOLVED; code-interpretation coverage와 economic-value proof를 분리해야 함 |
+| CON-05 | semantics-free 탐지의 의미 | `Sereum-2019`은 source·ABI 없이 실제 dataflow와 reentrancy를 판정 | SER-E10은 packed field·trust·constructor·manual mutex의 업무 의미를 몰라 정상 패턴도 경보함 | UNRESOLVED; program dependency와 semantic/economic interpretation을 분리해야 함 |
 
 ---
 
@@ -140,6 +146,9 @@ evaluation:
 | CE-05 | state/balance/totalSupply 호출 존재가 실제 가격 의존을 증명함 | 호출값이 소비되지 않거나 다른 분기로 버려질 수 있음 | 높음 | value-level data dependency 검증 대기 |
 | CE-06 | 역사 가격 이상+관련 주소 이익이면 PMA임 | 정상 시장 급변·저유동성 대형 swap 뒤 arbitrageur도 같은 조건을 만족할 수 있음 | 높음 | DeFort D2는 family별 반례를 명시하지 않아 검증 대기 |
 | CE-07 | 가격 이상 이후 손실 flow가 있는 pool이 최종 victim임 | 직접 pool 손실이 LP·lender·user·bad debt로 전가되거나 반대로 회복될 수 있음 | 높음 | loss bearer vertical slice 대기 |
+| CE-08 | direction+operation pattern이 actual value reliance를 증명함 | 같은 pool·token·순서라도 추론한 값이 settlement 분기에서 읽히지 않거나 버려질 수 있음 | 높음 | `DeFiScope-2025` E-017; execution dataflow 대기 |
+| CE-09 | suspicious-set precision 96%가 일반 transaction precision임 | DeFiScope D2는 initiator profit으로 사전 선별된 968건이며 6 FP 중 5건은 same-EOA 정상 flow | 높음 | `DeFiScope-2025` E-013·014; 모집단 분리 확인 |
+| CE-10 | taint 도달이 곧 economic consumption·causality임 | Sereum의 packed storage slot overtaint와 trust·manual-lock 의미 손실은 program dependency만으로 공격 의미가 닫히지 않음을 보임 | 높음 | `Sereum-2019` SER-E10·12; PMA vertical slice 대기 |
 
 ---
 
@@ -147,9 +156,9 @@ evaluation:
 
 | Priority | Paper | 읽는 이유 | 검증할 Gap/Hypothesis |
 |---|---|---|---|
-| 1 | DeFiScope | 확장 benchmark에서 DeFort의 price-model coverage와 일반성 재검증 | GAP-001~003·007 |
-| 2 | DeFiTainter | value-flow가 DeFort의 adapter·return-value 한계를 해결하는지 확인 | GAP-001~003 |
-| 3 | 실제 incident replay 기반 P&L 연구 | DeFort `Out-In`과 realized P&L·victim loss 비교 | GAP-004·005 |
+| 1 | DeFiTainter | value-flow가 DeFort·DeFiScope의 adapter·return-value 한계를 해결하는지 확인 | GAP-001~003·007 |
+| 2 | POMABuster | pattern·anomaly 기반 detector의 hard-negative·역할·손익 범위를 비교 | GAP-002~006 |
+| 3 | 실제 incident replay 기반 P&L 연구 | DeFort `Out-In`·DeFiScope 무계산과 realized P&L·victim loss 비교 | GAP-004·005 |
 | 4 | TWAP Oracle Attacks: Easier Done than Said? | multi-block·MEV 가정과 비용 정의 확인 | GAP-008, Q-05 |
 
 ---
@@ -158,16 +167,16 @@ evaluation:
 
 새 논문 완료 시:
 
-- [x] Paper Evidence DB: Oracles E-001~012, DeFiRanger E-001~018, DeFort E-001~035
-- [x] Literature Map: 세 논문의 related research seed와 DeFort 후속 DeFiScope 후보 기록
-- [x] Comparison Matrix: P1(Track B/C), P2·P3(Track A)의 기능·predicate 비교
-- [x] Coverage Matrix: 이론 모델, atomic detector, history+related-flow detector 범위 기록
-- [x] Limitation Matrix: adapter/event/rule, return-value, 역할·P&L heuristic, 공개 code 부재 기록
-- [x] Contradiction Matrix: cost 의미, platform independence, 자동 분석 출력 강도 기록
-- [x] Gap Ledger: DeFort가 GAP-004·006·008의 넓은 표현을 약화하면서 좁은 causal gap을 지원함을 기록
-- [x] Hypothesis Ledger: H-01~H-04 후보 등록
-- [x] Methodology Decision 영향: DeFort가 DQ-08의 core/adapter 분리 근거를 강화했으나 ACCEPTED 변경 없음
-- [x] Counterexample Queue: CE-01~07 등록
+- [x] Paper Evidence DB: Oracles E-001~012, DeFiRanger E-001~018, DeFort E-001~035, DeFiScope E-001~018, Sereum SER-E01~14
+- [x] Literature Map: 다섯 논문의 seed와 DeFiTainter·POMABuster 후속 후보 기록
+- [x] Comparison Matrix: P1(Track B/C), P2~P4(직접 Track A), P5 Sereum(인접 Track A/D)의 기능·predicate 비교
+- [x] Coverage Matrix: 이론 모델, action-pattern detector, history+profit detector, LLM direction detector, instruction-level runtime dataflow 범위 기록
+- [x] Limitation Matrix: adapter/event/rule, source·compile, return-value, storage field·trust 의미, 역할·P&L 부재/heuristic 기록
+- [x] Contradiction Matrix: cost 의미, platform independence, 자동 분석 출력, custom-model coverage, semantics-free dependency claim 강도 기록
+- [x] Gap Ledger: Sereum이 GAP-003·007의 넓은 부재 주장을 약화하고 GAP-006에 인접 semantic-loss 근거를 추가함
+- [x] Hypothesis Ledger: H-01~H-06 후보 등록
+- [x] Methodology Decision 영향: Sereum이 D-005의 공개 실행·상태 증거 필요성을 강화했으나 ACCEPTED 변경 없음
+- [x] Counterexample Queue: CE-01~10 등록
 - [x] Human Approval Queue: 새 승인 요청 없음
 
 ---
@@ -175,9 +184,9 @@ evaluation:
 # 12. 다음 작업
 
 ```text
-NEXT_ACTION: DeFiScope 또는 DeFiTainter로 DeFort의 adapter·value model·return-value dataflow 한계를 반증하거나 반복 확인
-WHY: DeFort가 역할·자금 흐름까지 출력해 넓은 gap 주장을 약화했지만 component-level 정확도와 causal linkage는 아직 미검증
-EXPECTED_OUTPUT: P4 근거 장부와 GAP-001~007 판정의 유지·좁힘·약화·반박
+NEXT_ACTION: DeFiTainter 또는 POMABuster로 DeFort·DeFiScope의 value-flow·adapter·pattern 한계를 반증하거나 반복 확인
+WHY: Sereum은 instruction-level dependency의 구현 가능성을 보였지만 PMA economic value·settlement·역할·손익으로의 연결은 검증하지 않음
+EXPECTED_OUTPUT: P6 근거 장부와 GAP-001~007 판정의 유지·좁힘·약화·반박
 STOP_CONDITION: 다음 논문 지정 또는 기존 문헌의 직접 비교 완료
 ```
 

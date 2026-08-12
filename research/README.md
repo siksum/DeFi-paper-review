@@ -18,7 +18,7 @@
 1. 논문의 primary·secondary track을 먼저 정한다.
 2. 같은 폴더의 해당 템플릿을 복사해 논문별 분석 노트를 작성한다.
 3. 상태보드, 리서치갭 통합 매트릭스, 인용·아이디어 뱅크를 직접 갱신한다.
-4. 직접 비교 대상일 때만 `related-work-comparison.md`의 비교축을 채운다.
+4. [`PMA-논문/related-work-comparison.md`](../PMA-논문/related-work-comparison.md)를 검토 완료 논문의 공통 통합 요약으로 갱신한다. 읽지 않은 논문의 빈 행은 만들지 않는다.
 5. 새 근거가 기존 `ACCEPTED` 결정과 충돌하면 자동 변경하지 않고 재검토 후보로 남긴다.
 
 기존 `research/WORKING_CONTEXT.md`, `RESEARCH_GAP_LEDGER.md`, `CITATION_IDEA_BANK.md`와 영문 템플릿은 이전 경로 호환용이다. 이후의 운영 갱신 기준은 프로젝트 루트의 제공 문서 파일들이다.

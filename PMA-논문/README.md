@@ -1,16 +1,16 @@
 # PMA 논문 목록
 
-> Related Work 비교표(특성 축 · Venue · Gap Matrix)는 [related-work-comparison.md](./related-work-comparison.md) 참조.
+> 검토 완료 논문의 공통 통합 요약(방법·입력·출력·역할·손익·평가·Gap)은 [related-work-comparison.md](./related-work-comparison.md) 참조.
 
 - 총 논문 수: **75**
-- 읽음: **4** / 미읽음: **71**
+- 읽음: **5** / 미읽음: **70**
 - 읽음 여부: `☐` 미읽음 · `☑` 읽음 (직접 체크해서 업데이트)
 
 ## 전체 목록
 
 | # | 제목 | 연도 | 읽음 |
 |---:|:---|:---:|:---:|
-| 1 | [Sereum: Protecting Existing Smart Contracts Against Re-Entrancy Attacks](./Sereum/Sereum.md) | 2019 | ☑ |
+| 1 | [Sereum: Protecting Existing Smart Contracts Against Re-Entrancy Attacks](./Sereum/관련%20연구%20분석.md) | 2019 | ☑ |
 | 2 | [Improved Price Oracles: Constant Function Market Makers](./Improved%20Price%20Oralces/Improved%20Price%20Oralces.md) | 2020 | ☐ |
 | 3 | [Securing Smart Contract with Runtime Validation](./SolyThesis/SolyThesis.md) | 2020 | ☐ |
 | 4 | [SODA: A Generic Online Detection Framework for Smart Contracts](./SODA/SODA.md) | 2020 | ☐ |
@@ -66,7 +66,7 @@
 | 54 | [AiRacleX: Automated Detection of Price Oracle Manipulations via LLM-Driven Knowledge Distillation](./AiRacleX/AiRacleX.md) | 2025 | ☐ |
 | 55 | [Automated Attack Synthesis for Constant Product Market Makers](./CPMMX/CPMMX.md) | 2025 | ☐ |
 | 56 | [Automated Invariant Generation for Solidity Smart Contracts](./InvCon+/InvCon+.md) | 2025 | ☐ |
-| 57 | [Detecting Various DeFi Price Manipulations with LLM Reasoning](./DeFiScope/DeFiScope.md) | 2025 | ☑ |
+| 57 | [Detecting Various DeFi Price Manipulations with LLM Reasoning](./DeFiScope/관련%20연구%20분석.md) | 2025 | ☑ |
 | 58 | [Enhancing Smart Contract Security Analysis with Execution Property Graphs](./CLUE/CLUE.md) | 2025 | ☐ |
 | 59 | [EvoPoC: Automated Exploit Synthesis for DeFi Smart Contracts via Hierarchical Evolution](./EvoPoC/EvoPoC.md) | 2025 | ☐ |
 | 60 | [FLAMES: Fine-tuning LLMs to Synthesize Invariants for Smart Contract Security](./Flames/Flames.md) | 2025 | ☐ |

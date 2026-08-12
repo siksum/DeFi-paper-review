@@ -1,142 +1,147 @@
-# Related Work 비교 정리 (PMA)
+# 전체 논문 통합 비교 — DeFi Price Manipulation
 
-> README 전체 75편 템플릿. Venue는 채우면서 `?` → 학회/저널명 ✔. 나머지 셀도 동일.
->
-> 이 파일은 논문 간 특성을 빠르게 비교하는 요약표다. gap 후보의 상태, 반증 조건, 논문별 Evidence ID는 [리서치갭 통합 매트릭스](../논문읽기_Research_OS_v3/리서치갭_통합_매트릭스_템플릿_v3.md)에서 관리한다. G1~G7은 검증 전 비교축이며, 빈 셀이나 `○` 하나만으로 novelty를 확정하지 않는다.
+> 최종 갱신: 2026-08-12
+> 이 파일은 **검토를 완료한 논문의 공통 비교 정본**이다. 아직 읽지 않은 논문의 빈 행을 미리 만들지 않는다. 전체 보유 논문 목록과 읽기 상태는 [PMA 논문 목록](./README.md), gap별 세부 판정은 [리서치갭 통합 매트릭스](../논문읽기_Research_OS_v3/리서치갭_통합_매트릭스_템플릿_v3.md), 재사용할 근거는 [인용·아이디어 뱅크](../논문읽기_Research_OS_v3/인용_아이디어_뱅크_템플릿.md)에서 관리한다.
 
-## 범례
+## 1. 현재 포함된 논문
 
-| 기호 | 의미 |
-|:---:|:---|
-| ✔ / ~ / ? | 확인 완료 / 추정 / 미확인 |
-| ● / ◐ / ○ / — | 지원 / 부분 / 미지원 / 해당없음 |
-| **TBD** | 우리 쪽 미확정 |
+| ID | 논문 | Venue / Year | Track | 현재 연구에서의 역할 | 검토 상태 |
+|---|---|---|---|---|---|
+| P1 | [Oracles in Decentralized Finance: Attack Costs, Profits and Mitigation Measures](./sok_survey/Oracles%20in%20Decentralized%20Finance/내용%20정리.md) | Entropy 2023 | Primary B / Secondary C | AMM·TWAP oracle의 조작자원, lending 담보, 단순 profit을 구분하는 경제모델 | 원문 확인 완료; 수치 재현 미수행 |
+| P2 | [DeFiRanger: Detecting DeFi Price Manipulation Attacks](./DeFiRanger/관련%20연구%20분석.md) | IEEE TDSC 2023 | A | transaction trace를 CFT와 semantic action으로 바꿔 8개 pattern을 탐지하는 직접 baseline | 원문·표·Discussion 확인; 공개 구현 없음 |
+| P3 | [DeFort: Automatic Detection and Analysis of Price Manipulation Attacks in DeFi Applications](./DeFort/관련%20연구%20분석.md) | ISSTA 2024 | A | 역사 가격 이상과 관련 주소 profit을 결합하고 역할·fund flow를 분석하는 직접 baseline | 원문·artifact 확인; 구현 비공개 |
+| P4 | [DeFiScope: Detecting Various DeFi Price Manipulations with LLM Reasoning](./DeFiScope/관련%20연구%20분석.md) | ASE 2025 | Primary A / Secondary D | Transfer Graph와 LLM 가격 방향을 8개 pattern에 결합하는 직접 baseline | 원문·보충자료·공식 code/dataset 확인; 재실행 미수행 |
+| P5 | [Sereum: Protecting Existing Smart Contracts Against Re-Entrancy Attacks](./Sereum/관련%20연구%20분석.md) | NDSS 2019 | Primary A / Secondary D | 동적 taint와 호출 트리로 실제 storage→control 의존성을 검증하는 인접 방법론; PMA 직접 baseline은 아님 | 원문·공식 공격 예제 확인; 전체 구현·재실행 미확인 |
 
----
+논문 유형이 다르므로 P1의 기능 부재를 직접 detector의 gap 근거로 사용하지 않는다. P2~P4는 직접 PMA 탐지 방법이므로 입력·predicate·출력·평가에서 확인된 부재와 실패 사례를 제한된 gap 근거로 사용할 수 있다. P5는 재진입 방어 논문이므로 PMA 기능 부재는 gap 근거로 세지 않고, 실행 데이터 의존성·관측 가능성·의미 손실에 관한 인접 근거만 사용한다.
 
-## 0. 축 설계 근거 (왜 이 7개인가)
+## 2. 한눈에 보는 방법과 출력
 
-PMA 탐지는 아래 4단계 질문으로 분해된다. 축은 이 질문에 1:1로 대응해야 한다.
+| Paper | 핵심 질문 | 주요 입력 | 중간 표현 | 실제 판정·계산 | 방법 출력 |
+|---|---|---|---|---|---|
+| P1 Oracles | 주어진 oracle을 조작하려면 자원·담보가 얼마나 필요한가? | AMM reserve·curve, oracle window, 목표가격, LTV 등 protocol parameter | 목표 TWAP→AMM 조작자원→최소담보·단순 profit | detector가 아니라 사전 경제성 모델 | attack cost/resource, minimum collateral, 단순화된 profit·mitigation |
+| P2 DeFiRanger | atomic transaction의 자금 흐름이 알려진 PMA pattern과 일치하는가? | call trace, events, native/ERC-20 transfer, 선택적 protocol external information | CFT→basic action→semantic action | 8개 Type I/II pattern과 cost/revenue 후보 관계 | PMA 경보·pattern; 독립 역할·피해손실 출력 없음 |
+| P3 DeFort | 역사 범위를 벗어난 가격과 관련 주소의 양의 이익이 함께 나타나는가? | target metadata, execution trace, events, RPC state, price history, 외부 token price | PCM/HCM/BCM/PDM 기반 behavior state model | price anomaly AND 관련 주소 subset의 환산 `Out-In` profit > 0 | 경보, attacker/victim/profiteer 후보, fund flow, associated function |
+| P4 DeFiScope | semantic operation 순서와 pool·token 가격 방향이 알려진 PMA pattern과 일치하는가? | raw transaction, call trace, ERC-20 Transfer, source·ABI, balance/supply delta | time-indexed Transfer Graph→6 operations + LLM price direction | 4 family·8 direction-aware pattern match | PMA 후보·pattern·operation·price direction; 역할·P&L 없음 |
+| P5 Sereum | 실행 중인 기존 contract가 inconsistent storage를 이용하는 재진입을 수행하는가? | EVM opcode, stack·memory·storage, 동적 call/return | dynamic call tree + shadow taint + storage write lock | 재진입 subtree의 `SLOAD→JUMPI` 의존 주소를 이전 invocation이 `SSTORE`하면 위반 | 경보, transaction abort·rollback; 역할·경제값·손익 없음 |
 
-```
-① 무엇이 "가격"인가        → 오라클/가격 지점 식별        → G2
-② 그 값이 조작되었는가      → 조작 유형 커버리지 + 시간 범위 → G3, G6
-③ 조작이 피해로 이어졌는가  → 인과 연결 · 손실 귀속        → G4
-④ 정상 행위와 어떻게 구분   → 차익거래·청산 판별           → G5
-   (전 단계 공통) 얼마나 손으로 짜맞췄나 / 무엇을 관측하나  → G1, G7
-```
+## 3. 인과 사슬과 경제 결과 비교
 
-> **서술 열로 강등한 것 (●/○ 아님):** 시점(When)·대응(Resp)·메커니즘(Mech).
-> 배치 모델이지 보장이 아니고, `DET-SC`(배포 전)와 `DET-TX`(사후)를 같은 ●/○ 축에 놓으면 표가 왜곡된다.
->
-> **버린 것:** "설명가능성" — ML/LLM 계열 몇 편 빼면 전부 ●이라 변별력이 없고, 형식화 없이는 guarantee로 인정받지 못한다. 필요하면 G4(손실 귀속 근거 제시)에 흡수시킬 것.
+기호:
 
----
+- `O`: 논문 방법이 명확히 지원
+- `△`: 제한적·heuristic·부분 지원
+- `X`: 방법이 산출하지 않음
+- `—`: 논문 목적상 비대상이며 gap 근거로 세지 않음
 
-## 1. 우리 포지셔닝
+| Capability | P1 Oracles | P2 DeFiRanger | P3 DeFort | P4 DeFiScope | P5 Sereum |
+|---|:---:|:---:|:---:|:---:|:---:|
+| 가격·평가 surface 자동 식별 | △ | △ | △ | △ | — |
+| 정상/reference value 구성 | O | X | △ | X | — |
+| attacker-induced distortion 확인 | O | △ | △ | △ | — |
+| 왜곡값의 실제 소비 확인 | △ | △ | △ | △ | O* |
+| 소비→정산·경제 결과 연결 | △ | △ | △ | △ | △* |
+| attacker/beneficiary 귀속 | — | X | △ | X | — |
+| victim/loss bearer 귀속 | — | X | △ | X | — |
+| 실제 transaction P&L | X | X | △ | X | — |
+| manipulation-attributable gain | X | X | X | X | — |
+| victim counterfactual loss | X | X | X | X | — |
+| 정상 유사 행위와의 원리적 구별 | — | △ | △ | △ | △* |
+| multi-transaction/multi-block 실행 증거 | △ | X | △ | X | X* |
+| event-less state 변화 관측 | — | X | △ | X | O* |
 
-### 1-1. 한 줄
-> **TBD** — `<입력>`으로 `<보장>`하에 `<범위의 PMA>`를 `<시점>`에 탐지/차단.
+중요한 해석:
 
-### 1-2. G1~G7 열 정의
+- P1의 `O`는 주어진 모델·surface·parameter 안의 이론 계산을 뜻하며, 실제 사건에서 surface를 자동 발견하거나 역할·손익을 복원했다는 의미가 아니다.
+- P2의 profitability는 실제 순자산 변화가 아니라 pattern용 cost/revenue 후보 관계다.
+- P3는 역할과 환산 profit을 출력하므로 “기존 연구는 역할·이익을 전혀 출력하지 않는다”는 주장을 반박한다. 다만 control clustering, full NAV, causal consumption, 반사실 손익은 없다.
+- P4의 price direction은 reference 대비 정확한 왜곡량이 아니며, operation order는 return-value→settlement dataflow가 아니다.
+- P5의 `*`는 **재진입 storage-control domain에 한정**된다. `SLOAD→JUMPI→SSTORE` 의존성과 event-less 실행 상태는 직접 관측하지만, 이것을 PMA의 왜곡값 소비·경제 정산·역할·손익 증거로 해석할 수는 없다.
 
-| ID | 축 | 묻는 질문 | 값 기준 (●) | 기존 한계 예시 |
-|:---:|:---|:---|:---|:---|
-| **G1** | **사양 비의존성** | 사람이 미리 짜맞춘 것이 얼마나 필요한가 — 프로토콜 어댑터/decoder, 함수 시그니처·주소 WL, 공격 패턴 목록, 라벨 데이터 | 넷 다 불필요 | DeFiRanger: 프로토콜별 decoder → 미등록 프로토콜에서 FN 295/309 (95%) |
-| **G2** | **가격·오라클 지점 식별** ★ | "무엇이 가격으로 쓰이는 값인가"를 어떻게 아는가 | 수동 지정 없이 자동 식별 | 대부분 오라클 함수/주소를 사전 지정. 미지정 sink는 원천 미탐 |
-| **G3** | **조작 유형 일반성** | 어떤 조작 벡터까지 하나의 모델로 커버하는가 — spot/reserve, TWAP, LP share·totalSupply, 외부 feed, donation·rebase | 5종 이상 | 유형별 패턴 하드코딩 → 새 유형마다 패턴 추가 |
-| **G4** | **인과 연결 · 손실 귀속** ★ | 조작된 값이 소비된 지점(sink)까지 추적하고, 피해자·손실액을 산출하는가 | sink 추적 + 피해자·손실액 | "공격 tx다"에서 끝남. 대응·검증 불가 |
-| **G5** | **정상 행위 판별** ★ | 차익거래·청산·JIT LP·대형 스왑과 구분하는 **원리**가 있는가 (수익성만으로 판정하지 않는가) | 원리적 구분 기준 보유 | hoard-and-dump + 수익성은 정상 차익거래와 동형 → FP의 근원 |
-| **G6** | **시간 범위** | 단일 atomic tx를 넘어서는가 | multi-tx / multi-block | atomic tx 가정 → TWAP 조작·지연 공격 원천 미탐 |
-| **G7** | **관측 완전성** | 이벤트 없이 내부 ledger만 바꾸는 상태 변화를 포착하는가 | 상태 diff까지 관측 | 이벤트/로그만 보면 구조적 누락 |
+## 4. 관측·사양 의존성과 실패 범위
 
+| Paper | 사람·사양 의존 | 관측되지 않으면 생기는 문제 | 실제 보고된 실패·반례 |
+|---|---|---|---|
+| P1 Oracles | AMM/oracle/consumer 모델과 parameter가 주어져야 함 | 실제 경로·fee·token mechanics가 다르면 경제성 계산을 직접 이전할 수 없음 | 실제 incident replay와 역할·손실 검증 없음 |
+| P2 DeFiRanger | semantic rule, 8 attack patterns, 일부 protocol external information | 미등록 internal ledger·event-less action·pattern 밖 공격 누락 | semantic FN 309 중 295건이 external information 부족과 관련; 정상 fee/buyback mechanics로 26 FP (`E-012/014`) |
+| P3 DeFort | target metadata, price template/signature/custom strategy, history DB, 외부 가격 | complex value model이나 trace return이 없으면 PCM·price read 실패 | BeltFinance complex price model과 Discover trace return 누락 FN (`E-019/028`) |
+| P4 DeFiScope | price-function keyword, verified source·compile, 6-operation ontology, 8 patterns; Type-II CPMM 가정 | no-source·compile failure·non-ERC20·closed custom model·cross-tx·정밀 수치계산에서 실패 | D1 miss 19건; source missing 3, compile 5, cross-tx 8, non-ERC20 1, 정밀 수치계산 2 (`E-011/012`) |
+| P5 Sereum | 수정 EVM, transaction-local 실행, storage word 단위 taint, 기본 `JUMPI` sink | 실행되지 않은 경로·분기 없는 소비를 놓치고 source field·trust 의미가 없어 정상 패턴을 경보할 수 있음 | packed field, delete/zero, constructor callback, tightly-coupled contracts, manual mutex 오탐 (`SER-E10`); 이후 artifact 확장은 논문 평가와 분리 (`SER-E14`) |
 
-### 1-3. 주장하지 않을 것
-- **TBD**
+## 5. 평가 결과 비교
 
----
+| Paper | Positive / detection 평가 | Semantic·analysis 평가 | Benign·운영 평가 | 해석 한계 |
+|---|---|---|---|---|
+| P1 Oracles | 실제 incident detection 없음 | simulation으로 AMM·LTV별 조작자원 비교 | 없음 | 이론 경제모델이며 empirical detector benchmark가 아님 |
+| P2 DeFiRanger | 26 incident day의 92,325,423 tx에서 155 alert, 129 TP·26 FP | 15,272 tx·8,117 actions에서 precision 0.996, recall 0.962 | 14 zero-day와 15 historical incident를 수동 조사 후 보고 | incident-day 모집단은 전체 PMA recall을 주지 않음; 공개 artifact 없음 |
+| P3 DeFort | D1 54건 중 52건 탐지 | 52건 중 50건의 associated function·behavior description을 수동 확인 | assumed-normal 435 apps·428,523 tx에서 alert 0; 5-chain live deployment 5건 보고 | 역할·금액·causal edge별 metric과 complete negative GT 없음 |
+| P4 DeFiScope | D1 95건 중 76건 탐지 | 1,000 tx의 204 operations에서 TG precision 0.984, recall 0.912 | D2 suspicious 968건: 147/153 TP; D3 random benign 96,800건: FP 0 | D2는 profit-biased suspicious set, D3는 hard-negative family별 GT가 아님; end-to-end 재실행 전 |
+| P5 Sereum | cross-function·delegated·create-based crafted attack 각 1건 탐지 | 77,987,922 tx replay에서 49,080 경보; DAO 2,294건·DSEthToken 43건 확인 | 52 관련 contract를 16 code group으로 묶어 6개 source group 분석; 9.6% runtime overhead | 0.063%는 전체 tx 대비 경보율이지 alert precision이 아님; 전체 attack 모집단 recall·현대 chain 일반화 없음 |
 
-## 2. 비교 표 (README 전체)
+## 6. 논문이 서로 바꾼 현재 판단
 
-> `Venue`: 학회/저널 (예: USENIX Sec, ISSTA, IEEE S&P, NDSS, ICSE, TDSC …)
-> `Cat`: `DET-TX` · `DET-SC` · `DEF` · `INV` · `SYN` · `ORA` · `INF` · `SOK`
-> `When`: 배포 전 / 실행 전(mempool) / 실행 중 / 사후 · `Resp`: 탐지 / 경보 / 차단 / 구제 / 합성
+### P1 Oracles가 추가한 것
 
-| # | Work | Year | Venue | Cat | When | Resp | Mech | G1 | G2 | G3 | G4 | G5 | G6 | G7 | Gap |
-|:--:|:---|:---:|:---|:---:|:---|:---|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---|
-| 0 | **Ours** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | **TBD** | — |
-| 1 | [Sereum](./Sereum/Sereum.md) | 2019 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 2 | [Improved Price Oracles](./Improved%20Price%20Oralces/Improved%20Price%20Oralces.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 3 | [Securing Smart Contract with Runtime Valid…](./SolyThesis/SolyThesis.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 4 | [SODA](./SODA/SODA.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 5 | [TxSpector](./TxSpector/TxSpector.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 6 | [ÆGIS](./AEGIS/AEGIS.md) | 2020 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 7 | [An Empirical Study of DeFi Liquidations](./sok_survey/An%20Empirical%20Study%20of%20DeFi%20Liquidations/An%20Empirical%20Study%20of%20DeFi%20Liquidations.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 8 | [Attacking the DeFi Ecosystem with Flash Lo…](./sok_survey/Attacking%20the%20DeFi%20Ecosystem%20with%20Flash%20Loans%20for%20Fun%20and%20Profit/Attacking%20the%20DeFi%20Ecosystem%20with%20Flash%20Loans%20for%20Fun%20and%20Profit.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 9 | [BLOCKEYE](./BlockEye/BlockEye.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 10 | [On the Just-In-Time Discovery of Profit-Ge…](./DeFiPoser/DeFiPoser.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 11 | [Smart Contract Vulnerabilities](./sok_survey/Smart%20Contract%20Vulnerabilities/Smart%20Contract%20Vulnerabilities.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 12 | [SoK](./sok_survey/SoK_Oracles%20from%20the%20Ground%20Truth%20to%20Market%20Manipulation/SoK_Oracles%20from%20the%20Ground%20Truth%20to%20Market%20Manipulation.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 13 | [The Eye of Horus](./Horus/Horus.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 14 | [TWAP Oracle Attacks](./TWAP%20Oracle%20Attacks/TWAP%20Oracle%20Attacks.md) | 2021 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 15 | [Clockwork Finance](./Clockwork%20Finance/Clockwork%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 16 | [Demystifying Exploitable Bugs in Smart Con…](./sok_survey/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts/Demystifying%20Exploitable%20Bugs%20in%20Smart%20Contracts.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 17 | [Detecting Flash Loan Based Attacks in Ethe…](./Detecting_Flash_Loan_Based_Attacks_in_Ethereum/Detecting_Flash_Loan_Based_Attacks_in_Ethereum.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 18 | [InvCon](./InvCon/InvCon.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 19 | [Oracles in Decentralized Finance](./sok_survey/Oracles%20in%20Decentralized%20Finance/내용%20정리.md) | 2023 | Entropy ✔ | `ORA` | 설계 시 | 위험평가 | TWAP+AMM 비용모델 | — | — | — | — | — | — | — | 직접 탐지 비교대상 아님; 근거 E-001~E-012 |
-| 20 | [Quantifying Blockchain Extractable Value](./sok_survey/Quantifying%20Blockchain%20Extractable%20Value/Quantifying%20Blockchain%20Extractable%20Value.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 21 | [Security Analysis of DeFi](./sok_survey/Security%20Analysis%20of%20DeFi/Security%20Analysis%20of%20DeFi.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 22 | [SoK](./sok_survey/SoK_Decentralized%20Finance/SoK_Decentralized%20Finance.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 23 | [Time-travel Investigation](./EthScope/EthScope.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 24 | [Uniswap v3 TWAP Oracles in Proof of Stake](./UniswapV3%20TWAP%20Oracles%20in%20Proof%20of%20Stake/UniswapV3%20TWAP%20Oracles%20in%20Proof%20of%20Stake.md) | 2022 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 25 | [A Robust Front-Running Methodology for Mal…](./FrontDef/FrontDef.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 26 | [BACKRUNNER](./BackRunner/BackRunner.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 27 | [Beyond the Public Mempool](./Beyond_the_Public_Mempool_final/Beyond_the_Public_Mempool_final.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 28 | [Blockchain Large Language Models](./BlockGPT/BlockGPT.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 29 | [DeFiRanger](./DeFiRanger/관련%20연구%20분석.md) | 2023 | IEEE TDSC ✔ | `DET-TX` | 사후/실시간 | 경보 | CFT+lifting+패턴8 | ○ | ○ | ◐ | ◐ | ○ | ○ | ○ | `E-005/012/014/016/018`: decoder FN295; event-less 누락; 패턴 밖 미탐; 수익성은 후보 필터 |
-| 30 | [DeFiTainter](./DeFiTainter/DeFiTainter.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 31 | [DeFiWarder](./DeFiWarder/DeFiWarder.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 32 | [Flash Loan Attack Is More Than Just Price …](./Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation/Flash%20Loan%20Attack%20Is%20More%20Than%20Just%20Price%20Oracle%20Manipulation.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 33 | [ItyFuzz](./ItyFuzz/ItyFuzz.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 34 | [POMABuster](./POMABuster/POMABuster.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 35 | [SoK](./sok_survey/SoK_Decentralized%20Finance%20Attacks/SoK_Decentralized%20Finance%20Attacks.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 36 | [The Blockchain Imitation Game](./Blockchain%20Imitation%20Game/Blockchain%20Imitation%20Game.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 37 | [Timely Identification of Victim Addresses …](./Identifying_Victims_in_DeFi_Attacks/Identifying_Victims_in_DeFi_Attacks.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 38 | [Toward Automated Detecting Unanticipated P…](./VeriOracle/VeriOracle.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 39 | [Your Exploit is Mine](./STING/STING.md) | 2023 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 40 | [BlockScan](./BlockScan/BlockScan.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 41 | [DeFiGuard](./DeFiGuard/DeFiGuard.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 42 | [DeFort](./DeFort/관련%20연구%20분석.md) | 2024 | ISSTA ✔ | `DET-ONLINE` | 사후/실시간 | 경보+행동분석 | 역사 가격 이상+관련 주소 이익 | ◐ | ◐ | ● | ◐ | ◐ | ◐ | ◐ | `E-009/019/031/032`: price adapter 필요; 역할·손익은 flow heuristic; consumption dataflow·반사실 없음 |
-| 43 | [Demystifying Invariant Effectiveness for S…](./Trace2Inv/Trace2Inv.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 44 | [FlashSyn](./FlashSyn/FlashSyn.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 45 | [FORAY](./FORAY/FORAY.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 46 | [Instrumenting Transaction Trace Properties…](./Instrumenting%20Transaction%20Trace%20Properties%20in%20Smart%20Contracts/Instrumenting%20Transaction%20Trace%20Properties%20in%20Smart%20Contracts.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 47 | [Midas](./Midas/Midas.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 48 | [Revealing Adversarial Smart Contracts thro…](./FinDet/FinDet.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 49 | [Safeguarding DeFi Smart Contracts against …](./OVer/OVer.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 50 | [SecPLF](./SecPLF/SecPLF.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 51 | [SMARTINV](./SmartInv/SmartInv.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 52 | [SmartOracle](./SmartOracle/SmartOracle.md) | 2024 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 53 | [AI Agent Smart Contract Exploit Generation](./AI%20Agent%20Smart%20Contract%20Exploit%20Generation/AI%20Agent%20Smart%20Contract%20Exploit%20Generation.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 54 | [AiRacleX](./AiRacleX/AiRacleX.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 55 | [Automated Attack Synthesis for Constant Pr…](./CPMMX/CPMMX.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 56 | [Automated Invariant Generation for Solidit…](./InvCon+/InvCon+.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 57 | [Detecting Various DeFi Price Manipulations…](./DeFiScope/DeFiScope.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 58 | [Enhancing Smart Contract Security Analysis…](./CLUE/CLUE.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 59 | [EvoPoC](./EvoPoC/EvoPoC.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 60 | [FLAMES](./Flames/Flames.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 61 | [Following Devils' Footprint](./SMARTCAT/SMARTCAT.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 62 | [LookAhead](./LookAhead/LookAhead.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 63 | [On-Chain Decentralized Learning and Cost-E…](./On-Chain%20Decentralized%20Learning%20and%20Cost-Effective%20Inference%20for%20DeFi%20Attack%20Mitigation/On-Chain%20Decentralized%20Learning%20and%20Cost-Effective%20Inference%20for%20DeFi%20Attack%20Mitigation.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 64 | [Ormer](./Ormer/Ormer.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 65 | [Penetrating the Hostile](./DeFiTail/DeFiTail.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 66 | [PropertyGPT](./PropertyGPT/PropertyGPT.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 67 | [Smart Contract Fuzzing Towards Profitable …](./VERITE/VERITE.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 68 | [Surviving in Dark Forest](./EVScope/EVScope.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 69 | [TraceLLM](./TraceLLM/TraceLLM.md) | 2025 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 70 | [Cost of Manipulation in AMM-Based Oracles](./Cost%20of%20Manipulation%20in%20AMM-Based%20Oracles/Cost%20of%20Manipulation%20in%20AMM-Based%20Oracles.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 71 | [Decentralized finance security](./sok_survey/Decentralized%20finance%20security/Decentralized%20finance%20security.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 72 | [DeFiTrace](./DeFiTrace/DeFiTrace.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 73 | [Enforcing Control Flow Integrity on DeFi S…](./CrossGuard/CrossGuard.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 74 | [HOUSTON](./HOUSTON/HOUSTON.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-| 75 | [LLM-Powered Detection of Price Manipulatio…](./PMDetector/PMDetector.md) | 2026 | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+- 필요 유동성·조달 규모, 회수 불가능한 공격비용, lending 담보, 단순 profit을 같은 값으로 취급하면 안 된다.
+- oracle window·AMM curve·초기 reserve·consumer LTV가 경제적 실행 가능성을 바꾼다.
+- 실제 P&L과 manipulation-attributable gain으로 직접 이전하려면 incident replay와 counterfactual이 추가로 필요하다.
+
+### P2 DeFiRanger가 추가한 것
+
+- raw trace를 semantic action으로 lifting한 뒤 pattern을 판정하는 구조는 유용한 baseline이다.
+- protocol external information 부족이 실제 semantic coverage 하락으로 이어졌다.
+- pattern과 profitability 후보만으로는 정상 fee·buyback mechanics를 배제하지 못했다.
+
+### P3 DeFort가 수정한 것
+
+- 기존 연구에도 attacker/victim/profiteer·fund flow·profit 후보를 출력하는 시스템이 있으므로 “역할·손익 출력이 전혀 없다”는 넓은 gap은 유지할 수 없다.
+- 남는 문제는 역할 label의 존재가 아니라 controller·beneficiary·final loss bearer의 근거와 role별 정확도다.
+- `Out-In` 환산 profit은 actual NAV나 manipulation-attributable gain과 구분해야 한다.
+
+### P4 DeFiScope가 수정한 것
+
+- 모든 custom price model에 사람이 직접 식을 작성해야 한다는 넓은 주장은 약화된다. open-source code와 LLM으로 가격 방향을 추론하는 방법이 있다.
+- 그러나 source·compile·keyword·closed-model 의존은 남고 실제 FN으로 나타났다.
+- direction+semantic pattern은 탐지 후보를 만들지만 exact distortion·value consumption·역할·손익을 계산하지 않는다.
+
+### P5 Sereum이 수정한 것
+
+- 실제 실행의 stack·memory·storage를 추적하면 호출 존재나 시간적 인접성보다 강한 `storage read → control decision → later write` 데이터 의존성을 만들 수 있다.
+- 따라서 “event가 없으면 모든 state/data 의존성을 관측할 수 없다”는 넓은 주장은 약화된다. 다만 수정 EVM이 필요하고, 논문은 PMA 경제값·정산을 추적하지 않는다.
+- semantics 없이도 program dependency는 판정할 수 있지만 packed field·trust·manual lock 의미를 잃어 오탐이 생겼다. program dependence와 economic meaning을 별도 계층으로 유지해야 한다.
+
+## 7. 현재 Gap 통합 판정
+
+모든 항목은 아직 `UNRESOLVED`다. 아래 표는 확정된 novelty 선언이 아니라 다음 문헌과 vertical slice로 반증할 후보를 요약한다.
+
+| Gap | 현재까지의 지원 근거 | 넓은 주장을 약화하는 근거 | 다음 검증 |
+|---|---|---|---|
+| GAP-001 protocol-specific 지식 의존 | P2 external information FN, P3 price adapter FN, P4 source·compile FN | P3 공통 behavior core, P4 source+LLM custom-model 해석 | DeFiTainter no-adapter·unknown-protocol 비교 |
+| GAP-002 surface/reference 자동 식별 | P2 call 후보, P3 template/signature, P4 keyword candidate는 exact surface·reference가 아님 | P3 PCM/history, P4 code reasoning이 부분 자동화 | VeriOracle·value-flow 연구 감사 |
+| GAP-003 개입→소비→정산 연결 | P2~P4 모두 semantic/temporal association은 있으나 return-value dataflow 없음 | P3 fund flow, P4 operation+direction, P5의 instruction-level storage→control 의존성이 부분 해결 방향을 제공 | 실제 사건 execution vertical slice에서 external return→settlement까지 확장 가능성 검증 |
+| GAP-004 역할·loss bearer 귀속 | P2·P4 독립 schema 없음; P3도 controller·final bearer·role metric 없음 | P3가 역할 후보를 실제 출력 | victim/beneficiary attribution 연구 |
+| GAP-005 actual·counterfactual 손익 분리 | 네 논문 모두 full NAV·조작 귀속 gain·victim counterfactual loss 미제공 | P1이 자원·비용·profit 개념을 구분하고 P3가 부분 profit 계산 | canonical ledger·counterfactual replay |
+| GAP-006 정상 행위 discrimination | P2 26 FP, P4 6 FP; family별 hard-negative 부재. P5는 인접 domain에서 field·trust 의미 손실이 오탐으로 이어짐을 보임 | P3 anomaly+profit, P4 direction+pattern과 대규모 benign 평가; P5는 실제 dependency로 단순 순서 규칙을 강화 | arbitrage·liquidation·JIT·대형 swap 대조 |
+| GAP-007 관측 완전성 | P2 event/internal-ledger, P3 trace return, P4 Transfer/source 실패가 FN으로 연결 | P3 RPC state·history, P4 source, P5의 modified-EVM opcode·stack·memory·storage 관측이 전면 부재 주장을 약화 | 공개 replay에서 state diff·opcode dataflow의 비용·배치·누락 비교 |
+| GAP-008 multi-block 실행 증거 | P2·P4 single tx; P4 cross-tx 8건 miss | P1의 `m` 이론모델, P3 history·related-flow가 전면 부재 주장 약화 | v1 이후 multi-block causal window 검증 |
+
+## 8. 현재 연구 포지션
+
+현재 방어 가능한 통합 주장은 다음과 같다.
+
+> `PROPOSED`: 기존 연구는 이론적 공격 경제성, transaction semantic pattern, 역사 가격 이상+profit, LLM 가격 방향을 제공하고, 인접 연구는 instruction-level data dependency도 구현한다. 그러나 공개 실행·상태 증거에서 **개입→정확한 왜곡값→실제 소비→정산→역할·actual/counterfactual gain·loss**를 하나의 검증 가능한 표현으로 연결하는지는 아직 확인되지 않았다.
+
+이 문장은 최종 novelty나 contribution이 아니다. 직접 경쟁 연구와 대표 사건·정상 반례를 더 검토한 뒤에만 좁히거나 기각한다. 현재 `ACCEPTED` 범위와 출력 결정은 [연구 결정 로그](../research/DECISIONS.md)를 따른다.
+
+## 9. 업데이트 규칙
+
+새 논문을 읽은 뒤 이 파일에서는 다음만 갱신한다.
+
+1. 검토 완료 논문 목록과 track
+2. 방법·입력·중간 표현·판정·출력 비교
+3. 역할·손익·시간·관측 범위
+4. 평가 denominator와 failure 사례
+5. 기존 gap을 지원·약화·반박하는 변화
+6. 현재 통합 주장에 미치는 영향
+
+세부 Evidence ID, 반증 조건, 가설과 상태 변경 이력은 이 파일에 중복해서 늘리지 않고 활성 [리서치갭 통합 매트릭스](../논문읽기_Research_OS_v3/리서치갭_통합_매트릭스_템플릿_v3.md)에 기록한다.
